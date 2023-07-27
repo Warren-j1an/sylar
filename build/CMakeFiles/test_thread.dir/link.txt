@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wno-deprecated -Wno-unused-function  -rdynamic CMakeFiles/test_thread.dir/tests/test_thread.cc.o  -o ../bin/test_thread   -L/mnt/d/dev/sylar/lib  -Wl,-rpath,/mnt/d/dev/sylar/lib ../lib/libsylar.so -lyaml-cpp -lpthread 

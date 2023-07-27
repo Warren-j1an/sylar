@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/mnt/d/dev/sylar/sylar/**",
+                "${workspaceFolder}/sylar/log",
+                "${workspaceFolder}/sylar/util",
+                "${workspaceFolder}/sylar/thread",
+                "${workspaceFolder}/sylar/config"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}
