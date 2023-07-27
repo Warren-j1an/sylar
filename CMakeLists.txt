@@ -11,6 +11,7 @@ set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -Wno-deprecated -Wno-unused-function")
 
 include_directories(.)
 include_directories(${PROJECT_SOURCE_DIR}/sylar/config)
+include_directories(${PROJECT_SOURCE_DIR}/sylar/fiber)
 include_directories(${PROJECT_SOURCE_DIR}/sylar/log)
 include_directories(${PROJECT_SOURCE_DIR}/sylar/thread)
 include_directories(${PROJECT_SOURCE_DIR}/sylar/util)
@@ -20,6 +21,7 @@ option(BUILD_TEST "ON for complile test" ON)
 
 set(LIB_SRC
     sylar/config/config.cc
+    sylar/fiber/fiber.cc
     sylar/log/log_level.cc
     sylar/log/log_event.cc
     sylar/log/log_formatter.cc
@@ -41,6 +43,7 @@ set(LIBS
 
 if(BUILD_TEST)
 sylar_add_executable(test_config "tests/test_config.cc" sylar "${LIBS}")
+sylar_add_executable(test_fiber "tests/test_fiber.cc" sylar "${LIBS}")
 sylar_add_executable(test_log "tests/test_log.cc" sylar "${LIBS}")
 sylar_add_executable(test_thread "tests/test_thread.cc" sylar "${LIBS}")
 endif()

@@ -6,9 +6,11 @@ CXX_FLAGS =  -Wno-deprecated -Wno-unused-function -fPIC
 
 CXX_DEFINES = -Dsylar_EXPORTS
 
-CXX_INCLUDES = -I/mnt/d/dev/sylar/. -I/mnt/d/dev/sylar/sylar/config -I/mnt/d/dev/sylar/sylar/log -I/mnt/d/dev/sylar/sylar/thread -I/mnt/d/dev/sylar/sylar/util 
+CXX_INCLUDES = -I/mnt/d/dev/sylar/. -I/mnt/d/dev/sylar/sylar/config -I/mnt/d/dev/sylar/sylar/fiber -I/mnt/d/dev/sylar/sylar/log -I/mnt/d/dev/sylar/sylar/thread -I/mnt/d/dev/sylar/sylar/util 
 
 # Custom defines: CMakeFiles/sylar.dir/sylar/config/config.cc.o_DEFINES = __FILE__="sylar/config/config.cc"
+
+# Custom defines: CMakeFiles/sylar.dir/sylar/fiber/fiber.cc.o_DEFINES = __FILE__="sylar/fiber/fiber.cc"
 
 # Custom defines: CMakeFiles/sylar.dir/sylar/log/log_level.cc.o_DEFINES = __FILE__="sylar/log/log_level.cc"
 

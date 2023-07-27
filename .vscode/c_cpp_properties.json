@@ -8,7 +8,8 @@
                 "${workspaceFolder}/sylar/log",
                 "${workspaceFolder}/sylar/util",
                 "${workspaceFolder}/sylar/thread",
-                "${workspaceFolder}/sylar/config"
+                "${workspaceFolder}/sylar/config",
+                "${workspaceFolder}/sylar/fiber"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",

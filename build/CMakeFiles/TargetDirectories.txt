@@ -2,5 +2,6 @@
 /mnt/d/dev/sylar/build/CMakeFiles/edit_cache.dir
 /mnt/d/dev/sylar/build/CMakeFiles/test_thread.dir
 /mnt/d/dev/sylar/build/CMakeFiles/test_log.dir
+/mnt/d/dev/sylar/build/CMakeFiles/test_fiber.dir
 /mnt/d/dev/sylar/build/CMakeFiles/test_config.dir
 /mnt/d/dev/sylar/build/CMakeFiles/sylar.dir

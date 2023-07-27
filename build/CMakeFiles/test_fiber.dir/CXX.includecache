@@ -6,15 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/mnt/d/dev/sylar/sylar/fiber/fiber.cc
-fiber.h
-/mnt/d/dev/sylar/sylar/fiber/fiber.h
-
-/mnt/d/dev/sylar/sylar/fiber/fiber.h
+../sylar/fiber/fiber.h
 functional
 -
 stdint.h
 -
 ucontext.h
 -
+
+/mnt/d/dev/sylar/tests/test_fiber.cc
+fiber.h
+/mnt/d/dev/sylar/tests/fiber.h
 

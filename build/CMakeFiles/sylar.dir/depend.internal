@@ -16,6 +16,9 @@ CMakeFiles/sylar.dir/sylar/config/config.cc.o
  /mnt/d/dev/sylar/sylar/config/config.h
  /mnt/d/dev/sylar/sylar/config/config_cast.h
  /mnt/d/dev/sylar/sylar/config/config_var.h
+CMakeFiles/sylar.dir/sylar/fiber/fiber.cc.o
+ /mnt/d/dev/sylar/sylar/fiber/fiber.cc
+ /mnt/d/dev/sylar/sylar/fiber/fiber.h
 CMakeFiles/sylar.dir/sylar/log/log.cc.o
  ../sylar/thread/mutex.h
  ../sylar/thread/thread.h
