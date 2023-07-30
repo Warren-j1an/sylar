@@ -17,8 +17,28 @@ CMakeFiles/sylar.dir/sylar/config/config.cc.o
  /mnt/d/dev/sylar/sylar/config/config_cast.h
  /mnt/d/dev/sylar/sylar/config/config_var.h
 CMakeFiles/sylar.dir/sylar/fiber/fiber.cc.o
+ ../sylar/config/config.h
+ ../sylar/config/config_cast.h
+ ../sylar/config/config_var.h
+ ../sylar/log/log.h
+ ../sylar/log/log_appender.h
+ ../sylar/log/log_event.h
+ ../sylar/log/log_formatter.h
+ ../sylar/log/log_level.h
+ ../sylar/thread/mutex.h
+ ../sylar/thread/thread.h
+ ../sylar/util/noncopyable.h
+ ../sylar/util/singleton.h
+ ../sylar/util/util.h
  /mnt/d/dev/sylar/sylar/fiber/fiber.cc
  /mnt/d/dev/sylar/sylar/fiber/fiber.h
+CMakeFiles/sylar.dir/sylar/fiber/scheduler.cc.o
+ ../sylar/thread/mutex.h
+ ../sylar/thread/thread.h
+ ../sylar/util/noncopyable.h
+ /mnt/d/dev/sylar/sylar/fiber/fiber.h
+ /mnt/d/dev/sylar/sylar/fiber/scheduler.cc
+ /mnt/d/dev/sylar/sylar/fiber/scheduler.h
 CMakeFiles/sylar.dir/sylar/log/log.cc.o
  ../sylar/thread/mutex.h
  ../sylar/thread/thread.h
@@ -68,5 +88,15 @@ CMakeFiles/sylar.dir/sylar/thread/thread.cc.o
  /mnt/d/dev/sylar/sylar/thread/thread.cc
  /mnt/d/dev/sylar/sylar/thread/thread.h
 CMakeFiles/sylar.dir/sylar/util/util.cc.o
+ ../sylar/fiber/fiber.h
+ ../sylar/log/log.h
+ ../sylar/log/log_appender.h
+ ../sylar/log/log_event.h
+ ../sylar/log/log_formatter.h
+ ../sylar/log/log_level.h
+ ../sylar/thread/mutex.h
+ ../sylar/thread/thread.h
+ ../sylar/util/noncopyable.h
+ ../sylar/util/singleton.h
  /mnt/d/dev/sylar/sylar/util/util.cc
  /mnt/d/dev/sylar/sylar/util/util.h

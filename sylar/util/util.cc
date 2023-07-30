@@ -1,3 +1,4 @@
+#include "fiber.h"
 #include "util.h"
 
 #include <cxxabi.h>
@@ -13,7 +14,7 @@ pid_t GetThreadID() {
 }
 
 uint32_t GetFiberID() {
-    return 0;
+    return Fiber::GetFiberID();
 }
 
 static std::string demangle(const char* str) {

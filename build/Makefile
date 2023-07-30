@@ -127,6 +127,19 @@ test_thread/fast:
 .PHONY : test_thread/fast
 
 #=============================================================================
+# Target rules for targets named test_scheduler
+
+# Build rule for target.
+test_scheduler: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_scheduler
+.PHONY : test_scheduler
+
+# fast build rule for target.
+test_scheduler/fast:
+	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/build
+.PHONY : test_scheduler/fast
+
+#=============================================================================
 # Target rules for targets named test_log
 
 # Build rule for target.
@@ -231,6 +244,33 @@ sylar/fiber/fiber.s: sylar/fiber/fiber.cc.s
 sylar/fiber/fiber.cc.s:
 	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/fiber/fiber.cc.s
 .PHONY : sylar/fiber/fiber.cc.s
+
+sylar/fiber/scheduler.o: sylar/fiber/scheduler.cc.o
+
+.PHONY : sylar/fiber/scheduler.o
+
+# target to build an object file
+sylar/fiber/scheduler.cc.o:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/fiber/scheduler.cc.o
+.PHONY : sylar/fiber/scheduler.cc.o
+
+sylar/fiber/scheduler.i: sylar/fiber/scheduler.cc.i
+
+.PHONY : sylar/fiber/scheduler.i
+
+# target to preprocess a source file
+sylar/fiber/scheduler.cc.i:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/fiber/scheduler.cc.i
+.PHONY : sylar/fiber/scheduler.cc.i
+
+sylar/fiber/scheduler.s: sylar/fiber/scheduler.cc.s
+
+.PHONY : sylar/fiber/scheduler.s
+
+# target to generate assembly for a file
+sylar/fiber/scheduler.cc.s:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/fiber/scheduler.cc.s
+.PHONY : sylar/fiber/scheduler.cc.s
 
 sylar/log/log.o: sylar/log/log.cc.o
 
@@ -529,6 +569,33 @@ tests/test_log.cc.s:
 	$(MAKE) -f CMakeFiles/test_log.dir/build.make CMakeFiles/test_log.dir/tests/test_log.cc.s
 .PHONY : tests/test_log.cc.s
 
+tests/test_scheduler.o: tests/test_scheduler.cc.o
+
+.PHONY : tests/test_scheduler.o
+
+# target to build an object file
+tests/test_scheduler.cc.o:
+	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o
+.PHONY : tests/test_scheduler.cc.o
+
+tests/test_scheduler.i: tests/test_scheduler.cc.i
+
+.PHONY : tests/test_scheduler.i
+
+# target to preprocess a source file
+tests/test_scheduler.cc.i:
+	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.i
+.PHONY : tests/test_scheduler.cc.i
+
+tests/test_scheduler.s: tests/test_scheduler.cc.s
+
+.PHONY : tests/test_scheduler.s
+
+# target to generate assembly for a file
+tests/test_scheduler.cc.s:
+	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.s
+.PHONY : tests/test_scheduler.cc.s
+
 tests/test_thread.o: tests/test_thread.cc.o
 
 .PHONY : tests/test_thread.o
@@ -565,6 +632,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test_thread"
+	@echo "... test_scheduler"
 	@echo "... test_log"
 	@echo "... test_fiber"
 	@echo "... test_config"
@@ -575,6 +643,9 @@ help:
 	@echo "... sylar/fiber/fiber.o"
 	@echo "... sylar/fiber/fiber.i"
 	@echo "... sylar/fiber/fiber.s"
+	@echo "... sylar/fiber/scheduler.o"
+	@echo "... sylar/fiber/scheduler.i"
+	@echo "... sylar/fiber/scheduler.s"
 	@echo "... sylar/log/log.o"
 	@echo "... sylar/log/log.i"
 	@echo "... sylar/log/log.s"
@@ -608,6 +679,9 @@ help:
 	@echo "... tests/test_log.o"
 	@echo "... tests/test_log.i"
 	@echo "... tests/test_log.s"
+	@echo "... tests/test_scheduler.o"
+	@echo "... tests/test_scheduler.i"
+	@echo "... tests/test_scheduler.s"
 	@echo "... tests/test_thread.o"
 	@echo "... tests/test_thread.i"
 	@echo "... tests/test_thread.s"

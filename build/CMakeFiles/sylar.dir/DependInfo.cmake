@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/mnt/d/dev/sylar/sylar/config/config.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/config/config.cc.o"
   "/mnt/d/dev/sylar/sylar/fiber/fiber.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/fiber/fiber.cc.o"
+  "/mnt/d/dev/sylar/sylar/fiber/scheduler.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/fiber/scheduler.cc.o"
   "/mnt/d/dev/sylar/sylar/log/log.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/log/log.cc.o"
   "/mnt/d/dev/sylar/sylar/log/log_appender.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/log/log_appender.cc.o"
   "/mnt/d/dev/sylar/sylar/log/log_event.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/log/log_event.cc.o"
