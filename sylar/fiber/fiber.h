@@ -1,11 +1,12 @@
 #pragma once
 
 #include <functional>
+#include <memory>
 #include <stdint.h>
 #include <ucontext.h>
 
 namespace sylar {
-class Fiber {
+class Fiber : public std::enable_shared_from_this<Fiber> {
 public:
     enum State { 
         INIT,
@@ -15,6 +16,7 @@ public:
         READY,
         EXECPT 
     };
+    typedef std::shared_ptr<Fiber> ptr;
 
     Fiber(std::function<void()> cb, size_t stackSize = 0, bool use_caller = false);
     ~Fiber();
@@ -27,6 +29,7 @@ public:
     State getState() const { return m_state; }
 
     static void SetThis(Fiber *f);
+    static Fiber::ptr GetThis();
     static void YeildToReady();
     static void YeildToHold();
     static void MainFunc();
