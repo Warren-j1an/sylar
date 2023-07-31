@@ -32,8 +32,7 @@ public:
     void start();
     void stop();
     const std::string& getName() const { return m_name; }
-    static Scheduler::ptr GetThis();
-    static Fiber::ptr  GetMainFiber();
+    static Scheduler *GetThis();
 
 protected:
     void run();

@@ -7,6 +7,7 @@
 
 namespace sylar {
 class Fiber : public std::enable_shared_from_this<Fiber> {
+friend class Scheduler;
 public:
     enum State { 
         INIT,
@@ -18,13 +19,11 @@ public:
     };
     typedef std::shared_ptr<Fiber> ptr;
 
-    Fiber(std::function<void()> cb, size_t stackSize = 0, bool use_caller = false);
+    Fiber(std::function<void()> cb, size_t stackSize = 0);
     ~Fiber();
     void reset(std::function<void()> cb);
     void swapIn();
     void swapOut();
-    void call();
-    void back();
     uint64_t getID() const { return m_id; }
     State getState() const { return m_state; }
 
@@ -33,7 +32,6 @@ public:
     static void YeildToReady();
     static void YeildToHold();
     static void MainFunc();
-    static void CallerMainFunc();
     static uint64_t GetFiberID();
     static uint64_t TotalFibers();
 
