@@ -33,6 +33,7 @@ public:
     void stop();
     const std::string& getName() const { return m_name; }
     static Scheduler *GetThis();
+    static Fiber *GetMainFiber();
 
 protected:
     void run();
@@ -42,7 +43,7 @@ protected:
     virtual void idle();
     bool hasIdleThreads() { return m_idleThreadCount > 0; }
 
-private:
+public:
     template<typename FiberOrFunc>
     void schedule(FiberOrFunc fc, pid_t thread = -1) {
         bool need_tickle = false;
@@ -69,6 +70,8 @@ private:
             tickle();
         }
     }
+
+private:
     template<typename FiberOrFunc>
     bool scheduleNoLock(FiberOrFunc fc, pid_t thread) {
         bool need_tickle = m_fibers.empty();
@@ -83,7 +86,7 @@ private:
     MutexType m_mutex;
     std::vector<Thread::ptr> m_threads;         // thread pool
     std::vector<FiberAndFunction> m_fibers;     // function is same as fiber to use
-    Fiber::ptr m_rootFiber;
+    Fiber::ptr m_callerFiber;
     std::string m_name;
 
 protected:

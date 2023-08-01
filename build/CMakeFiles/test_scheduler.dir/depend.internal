@@ -4,7 +4,14 @@
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o
  ../sylar/fiber/fiber.h
  ../sylar/fiber/scheduler.h
+ ../sylar/log/log.h
+ ../sylar/log/log_appender.h
+ ../sylar/log/log_event.h
+ ../sylar/log/log_formatter.h
+ ../sylar/log/log_level.h
  ../sylar/thread/mutex.h
  ../sylar/thread/thread.h
  ../sylar/util/noncopyable.h
+ ../sylar/util/singleton.h
+ ../sylar/util/util.h
  /mnt/d/dev/sylar/tests/test_scheduler.cc

@@ -3,8 +3,15 @@
 
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../sylar/fiber/fiber.h
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../sylar/fiber/scheduler.h
+CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../sylar/log/log.h
+CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../sylar/log/log_appender.h
+CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../sylar/log/log_event.h
+CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../sylar/log/log_formatter.h
+CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../sylar/log/log_level.h
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../sylar/thread/mutex.h
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../sylar/thread/thread.h
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../sylar/util/noncopyable.h
+CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../sylar/util/singleton.h
+CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../sylar/util/util.h
 CMakeFiles/test_scheduler.dir/tests/test_scheduler.cc.o: ../tests/test_scheduler.cc
 

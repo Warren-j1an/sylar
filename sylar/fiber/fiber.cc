@@ -1,6 +1,7 @@
 #include "config.h"
 #include "fiber.h"
 #include "log.h"
+#include "scheduler.h"
 #include "util.h"
 
 #include <atomic>
@@ -11,8 +12,8 @@ static ConfigVar<uint32_t>::ptr g_fiber_stack_size = Config::Lookup<uint32_t>("f
 static std::atomic<uint64_t> s_fiber_id {0};
 static std::atomic<uint64_t> s_fiber_count {0};
 
-thread_local Fiber *t_fiber = nullptr;              // current fiber
-thread_local Fiber::ptr t_threadFiber = nullptr;    // the first fiber (main fiber)
+static thread_local Fiber *t_fiber = nullptr;              // current fiber
+static thread_local Fiber::ptr t_threadFiber = nullptr;    // the first fiber (main fiber)
 
 Fiber::Fiber() : m_id(0), m_stackSize(0), m_stack(nullptr){
     m_state = EXEC;
@@ -21,8 +22,8 @@ Fiber::Fiber() : m_id(0), m_stackSize(0), m_stack(nullptr){
     ++s_fiber_count;
 }
 
-Fiber::Fiber(std::function<void()> cb, size_t stackSize)
-    : m_id(++s_fiber_id), m_state(INIT), m_cb(cb) {
+Fiber::Fiber(std::function<void()> cb, size_t stackSize, bool use_caller)
+    : m_id(++s_fiber_id), m_useCaller(use_caller), m_state(INIT), m_cb(cb) {
     ++s_fiber_count;
     m_stackSize = stackSize ? stackSize : g_fiber_stack_size->getValue();
     m_stack = malloc(m_stackSize);
@@ -62,12 +63,20 @@ void Fiber::swapIn() {
     SetThis(this);
     SYLAR_ASSERT(m_state != EXEC);
     m_state = EXEC;
-    SYLAR_ASSERT(!swapcontext(&t_threadFiber->m_ctx, &m_ctx));
+    if (m_useCaller) {
+        SYLAR_ASSERT(!swapcontext(&t_threadFiber->m_ctx, &m_ctx));
+    } else {
+        SYLAR_ASSERT(!swapcontext(&Scheduler::GetMainFiber()->m_ctx, &m_ctx));
+    }
 }
 
 void Fiber::swapOut() {
     SetThis(t_threadFiber.get());
-    SYLAR_ASSERT(!swapcontext(&m_ctx, &t_threadFiber->m_ctx));
+    if (m_useCaller) {
+        SYLAR_ASSERT(!swapcontext(&m_ctx, &t_threadFiber->m_ctx));
+    } else {
+        SYLAR_ASSERT(!swapcontext(&m_ctx, &Scheduler::GetMainFiber()->m_ctx));
+    }
 }
 
 void Fiber::SetThis(Fiber *f) {

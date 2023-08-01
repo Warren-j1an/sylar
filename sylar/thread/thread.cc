@@ -5,8 +5,8 @@
 namespace sylar {
 static Logger::ptr g_logger = SYLAR_LOG_NAME("root");
 
-thread_local Thread* t_thread = nullptr;
-thread_local std::string t_thread_name = "UNKNOW";
+static thread_local Thread* t_thread = nullptr;
+static thread_local std::string t_thread_name = "UNKNOW";
 
 Thread* Thread::GetThis() {
     return t_thread;

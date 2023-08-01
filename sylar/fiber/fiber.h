@@ -19,7 +19,7 @@ public:
     };
     typedef std::shared_ptr<Fiber> ptr;
 
-    Fiber(std::function<void()> cb, size_t stackSize = 0);
+    Fiber(std::function<void()> cb, size_t stackSize = 0, bool use_caller = false);
     ~Fiber();
     void reset(std::function<void()> cb);
     void swapIn();
@@ -41,6 +41,7 @@ private:
 private:
     uint64_t m_id;
     uint32_t m_stackSize;
+    bool m_useCaller;
     Fiber::State m_state;
     ucontext_t m_ctx;
     void *m_stack;
