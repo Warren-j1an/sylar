@@ -14,6 +14,8 @@ CXX_INCLUDES = -I/mnt/d/dev/sylar/. -I/mnt/d/dev/sylar/sylar/config -I/mnt/d/dev
 
 # Custom defines: CMakeFiles/sylar.dir/sylar/fiber/scheduler.cc.o_DEFINES = __FILE__="sylar/fiber/scheduler.cc"
 
+# Custom defines: CMakeFiles/sylar.dir/sylar/fiber/timer.cc.o_DEFINES = __FILE__="sylar/fiber/timer.cc"
+
 # Custom defines: CMakeFiles/sylar.dir/sylar/log/log_level.cc.o_DEFINES = __FILE__="sylar/log/log_level.cc"
 
 # Custom defines: CMakeFiles/sylar.dir/sylar/log/log_event.cc.o_DEFINES = __FILE__="sylar/log/log_event.cc"

@@ -23,6 +23,7 @@ set(LIB_SRC
     sylar/config/config.cc
     sylar/fiber/fiber.cc
     sylar/fiber/scheduler.cc
+    sylar/fiber/timer.cc
     sylar/log/log_level.cc
     sylar/log/log_event.cc
     sylar/log/log_formatter.cc

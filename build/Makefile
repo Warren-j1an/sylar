@@ -272,6 +272,33 @@ sylar/fiber/scheduler.cc.s:
 	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/fiber/scheduler.cc.s
 .PHONY : sylar/fiber/scheduler.cc.s
 
+sylar/fiber/timer.o: sylar/fiber/timer.cc.o
+
+.PHONY : sylar/fiber/timer.o
+
+# target to build an object file
+sylar/fiber/timer.cc.o:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/fiber/timer.cc.o
+.PHONY : sylar/fiber/timer.cc.o
+
+sylar/fiber/timer.i: sylar/fiber/timer.cc.i
+
+.PHONY : sylar/fiber/timer.i
+
+# target to preprocess a source file
+sylar/fiber/timer.cc.i:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/fiber/timer.cc.i
+.PHONY : sylar/fiber/timer.cc.i
+
+sylar/fiber/timer.s: sylar/fiber/timer.cc.s
+
+.PHONY : sylar/fiber/timer.s
+
+# target to generate assembly for a file
+sylar/fiber/timer.cc.s:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/fiber/timer.cc.s
+.PHONY : sylar/fiber/timer.cc.s
+
 sylar/log/log.o: sylar/log/log.cc.o
 
 .PHONY : sylar/log/log.o
@@ -646,6 +673,9 @@ help:
 	@echo "... sylar/fiber/scheduler.o"
 	@echo "... sylar/fiber/scheduler.i"
 	@echo "... sylar/fiber/scheduler.s"
+	@echo "... sylar/fiber/timer.o"
+	@echo "... sylar/fiber/timer.i"
+	@echo "... sylar/fiber/timer.s"
 	@echo "... sylar/log/log.o"
 	@echo "... sylar/log/log.i"
 	@echo "... sylar/log/log.s"

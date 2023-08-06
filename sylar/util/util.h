@@ -30,4 +30,7 @@ std::string TypetoName() {
     free(s_name);
     return name;
 }
+
+uint64_t GetCurrentMS();
+uint64_t GetCurrentUS();
 }

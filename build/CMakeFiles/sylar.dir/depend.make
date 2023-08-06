@@ -47,6 +47,19 @@ CMakeFiles/sylar.dir/sylar/fiber/scheduler.cc.o: ../sylar/fiber/fiber.h
 CMakeFiles/sylar.dir/sylar/fiber/scheduler.cc.o: ../sylar/fiber/scheduler.cc
 CMakeFiles/sylar.dir/sylar/fiber/scheduler.cc.o: ../sylar/fiber/scheduler.h
 
+CMakeFiles/sylar.dir/sylar/fiber/timer.cc.o: ../sylar/log/log.h
+CMakeFiles/sylar.dir/sylar/fiber/timer.cc.o: ../sylar/log/log_appender.h
+CMakeFiles/sylar.dir/sylar/fiber/timer.cc.o: ../sylar/log/log_event.h
+CMakeFiles/sylar.dir/sylar/fiber/timer.cc.o: ../sylar/log/log_formatter.h
+CMakeFiles/sylar.dir/sylar/fiber/timer.cc.o: ../sylar/log/log_level.h
+CMakeFiles/sylar.dir/sylar/fiber/timer.cc.o: ../sylar/thread/mutex.h
+CMakeFiles/sylar.dir/sylar/fiber/timer.cc.o: ../sylar/thread/thread.h
+CMakeFiles/sylar.dir/sylar/fiber/timer.cc.o: ../sylar/util/noncopyable.h
+CMakeFiles/sylar.dir/sylar/fiber/timer.cc.o: ../sylar/util/singleton.h
+CMakeFiles/sylar.dir/sylar/fiber/timer.cc.o: ../sylar/util/util.h
+CMakeFiles/sylar.dir/sylar/fiber/timer.cc.o: ../sylar/fiber/timer.cc
+CMakeFiles/sylar.dir/sylar/fiber/timer.cc.o: ../sylar/fiber/timer.h
+
 CMakeFiles/sylar.dir/sylar/log/log.cc.o: ../sylar/thread/mutex.h
 CMakeFiles/sylar.dir/sylar/log/log.cc.o: ../sylar/thread/thread.h
 CMakeFiles/sylar.dir/sylar/log/log.cc.o: ../sylar/util/noncopyable.h
