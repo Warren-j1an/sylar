@@ -22,6 +22,7 @@ option(BUILD_TEST "ON for complile test" ON)
 set(LIB_SRC
     sylar/config/config.cc
     sylar/fiber/fiber.cc
+    sylar/fiber/iomanager.cc
     sylar/fiber/scheduler.cc
     sylar/fiber/timer.cc
     sylar/log/log_level.cc

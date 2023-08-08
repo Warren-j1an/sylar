@@ -57,7 +57,7 @@ public:
     }
 
     template<typename InputIterator>
-    void scheduler(InputIterator begin, InputIterator end) {
+    void schedule(InputIterator begin, InputIterator end) {
         bool need_tickle = false;
         {
             MutexType::Lock lock(m_mutex);
