@@ -38,7 +38,7 @@ set(LIB_SRC
 add_library(sylar SHARED ${LIB_SRC})
 force_redefine_file_macro_for_sources(sylar)
 
-set(LIBS 
+set(LIBS
     sylar
     yaml-cpp
     pthread

@@ -26,8 +26,8 @@ private:
 
         struct EventContext {
             Scheduler* scheduler = nullptr;
-            Fiber::ptr fiber;
-            std::function<void()> cb;
+            Fiber::ptr fiber = nullptr;
+            std::function<void()> cb = nullptr;
         };
 
         EventContext& getContext(Event event);
@@ -48,7 +48,7 @@ public:
     bool delEvent(int fd, Event event);
     bool cancelEvent(int fd, Event event);
     bool cancelAll(int fd);
-    
+
     static IOManager* GetThis();
 
 protected:
@@ -57,7 +57,7 @@ protected:
     void idle() override;
     void onTimerInsertedAtFront() override;
     void contextResize(size_t size);
-    bool stopping(uint64_t timeout);
+    bool stopping(uint64_t& timeout);
 
 private:
     int m_epfd = 0;

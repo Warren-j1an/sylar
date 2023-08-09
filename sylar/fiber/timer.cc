@@ -10,7 +10,7 @@ bool Timer::Compare::operator()(const Timer::ptr lhs, const Timer::ptr rhs) cons
     return lhs.get() < rhs.get();
 }
 
-Timer::Timer(uint64_t ms, std::function<void()> cb, bool recurring) 
+Timer::Timer(uint64_t ms, std::function<void()> cb, bool recurring)
     : m_recurring(recurring), m_ms(ms), m_cb(cb) {
     m_next = GetCurrentMS() + m_ms;
 }
@@ -36,7 +36,7 @@ static void OnTimer(std::weak_ptr<void> weak_cond, std::function<void()> cb) {
     }
 }
 
-Timer::ptr TimerManager::addConditionTimer(uint64_t ms, std::function<void()> cb, 
+Timer::ptr TimerManager::addConditionTimer(uint64_t ms, std::function<void()> cb,
                                            std::weak_ptr<void> weak_cond, bool recurring) {
     return addTimer(ms, std::bind(OnTimer, weak_cond, cb), recurring);
 }

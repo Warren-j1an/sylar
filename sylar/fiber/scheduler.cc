@@ -54,7 +54,7 @@ void Scheduler::start() {
 
 void Scheduler::stop() {
     // m_autoStop = true;
-    /* if (m_rootFiber && m_threadCount == 0 && (m_rootFiber->getState() == Fiber::INIT || 
+    /* if (m_rootFiber && m_threadCount == 0 && (m_rootFiber->getState() == Fiber::INIT ||
         m_rootFiber->getState() == Fiber::TERM || m_rootFiber->getState() == Fiber::EXECPT)) {
         SYLAR_LOG_INFO(g_logger) << "stopped";
         m_stopping = true;
@@ -126,7 +126,7 @@ void Scheduler::run() {
         if (tickle_me) {
             tickle();
         }
-        if (fiberfunc.fiber && fiberfunc.fiber->getState() != Fiber::TERM 
+        if (fiberfunc.fiber && fiberfunc.fiber->getState() != Fiber::TERM
                             && fiberfunc.fiber->getState() != Fiber::EXECPT) {
             fiberfunc.fiber->swapIn();
             m_activeThreadCount -= 1;

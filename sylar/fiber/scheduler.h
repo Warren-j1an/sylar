@@ -26,7 +26,7 @@ class Scheduler {
 public:
     typedef std::shared_ptr<Scheduler> ptr;
     typedef Mutex MutexType;
-    
+
     Scheduler(size_t thread = 1, bool use_caller = false, const std::string& name = "");
     virtual ~Scheduler();
     void start();
