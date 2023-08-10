@@ -46,7 +46,7 @@ public:
     bool reset(Timer::ptr timer, uint64_t ms, bool from_now);
 
 protected:
-    void addTimer(Timer::ptr val);
+    void addTimer(Timer::ptr val, RWMutexType::WriteLock& lock);
     bool detectClockRollover(uint64_t now_ms);
     virtual void onTimerInsertedAtFront() = 0;
 

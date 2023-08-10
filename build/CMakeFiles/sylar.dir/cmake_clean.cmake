@@ -3,6 +3,7 @@ file(REMOVE_RECURSE
   "../lib/libsylar.so"
   "CMakeFiles/sylar.dir/sylar/config/config.cc.o"
   "CMakeFiles/sylar.dir/sylar/fiber/fiber.cc.o"
+  "CMakeFiles/sylar.dir/sylar/fiber/iomanager.cc.o"
   "CMakeFiles/sylar.dir/sylar/fiber/scheduler.cc.o"
   "CMakeFiles/sylar.dir/sylar/fiber/timer.cc.o"
   "CMakeFiles/sylar.dir/sylar/log/log.cc.o"

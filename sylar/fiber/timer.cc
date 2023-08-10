@@ -1,7 +1,10 @@
+#include "log.h"
 #include "timer.h"
 #include "util.h"
 
 namespace sylar {
+static Logger::ptr g_logger = SYLAR_LOG_NAME("root");
+
 bool Timer::Compare::operator()(const Timer::ptr lhs, const Timer::ptr rhs) const {
     if (!rhs) return false;
     if (!lhs) return true;
@@ -25,7 +28,8 @@ TimerManager::~TimerManager() {}
 
 Timer::ptr TimerManager::addTimer(uint64_t ms, std::function<void()> cb, bool recurring) {
     Timer::ptr timer(new Timer(ms, cb, recurring));
-    addTimer(timer);
+    RWMutexType::WriteLock lock(m_mutex);
+    addTimer(timer, lock);
     return timer;
 }
 
@@ -122,7 +126,7 @@ bool TimerManager::refresh(Timer::ptr timer) {
     }
     m_timers.erase(it);
     timer->m_next = GetCurrentMS() + timer->m_ms;
-    addTimer(timer);
+    addTimer(timer, lock);
     return true;
 }
 
@@ -147,12 +151,11 @@ bool TimerManager::reset(Timer::ptr timer, uint64_t ms, bool from_now) {
     }
     timer->m_ms = ms;
     timer->m_next = start + ms;
-    addTimer(timer);
+    addTimer(timer, lock);
     return true;
 }
 
-void TimerManager::addTimer(Timer::ptr val) {
-    RWMutexType::WriteLock lock(m_mutex);
+void TimerManager::addTimer(Timer::ptr val, RWMutexType::WriteLock& lock) {
     auto it = m_timers.insert(val).first;
     bool at_front = (it == m_timers.begin()) && !m_tickled;
     if(at_front) {

@@ -153,6 +153,19 @@ test_log/fast:
 .PHONY : test_log/fast
 
 #=============================================================================
+# Target rules for targets named test_iomanager
+
+# Build rule for target.
+test_iomanager: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_iomanager
+.PHONY : test_iomanager
+
+# fast build rule for target.
+test_iomanager/fast:
+	$(MAKE) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/build
+.PHONY : test_iomanager/fast
+
+#=============================================================================
 # Target rules for targets named test_fiber
 
 # Build rule for target.
@@ -244,6 +257,33 @@ sylar/fiber/fiber.s: sylar/fiber/fiber.cc.s
 sylar/fiber/fiber.cc.s:
 	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/fiber/fiber.cc.s
 .PHONY : sylar/fiber/fiber.cc.s
+
+sylar/fiber/iomanager.o: sylar/fiber/iomanager.cc.o
+
+.PHONY : sylar/fiber/iomanager.o
+
+# target to build an object file
+sylar/fiber/iomanager.cc.o:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/fiber/iomanager.cc.o
+.PHONY : sylar/fiber/iomanager.cc.o
+
+sylar/fiber/iomanager.i: sylar/fiber/iomanager.cc.i
+
+.PHONY : sylar/fiber/iomanager.i
+
+# target to preprocess a source file
+sylar/fiber/iomanager.cc.i:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/fiber/iomanager.cc.i
+.PHONY : sylar/fiber/iomanager.cc.i
+
+sylar/fiber/iomanager.s: sylar/fiber/iomanager.cc.s
+
+.PHONY : sylar/fiber/iomanager.s
+
+# target to generate assembly for a file
+sylar/fiber/iomanager.cc.s:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/fiber/iomanager.cc.s
+.PHONY : sylar/fiber/iomanager.cc.s
 
 sylar/fiber/scheduler.o: sylar/fiber/scheduler.cc.o
 
@@ -569,6 +609,33 @@ tests/test_fiber.cc.s:
 	$(MAKE) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cc.s
 .PHONY : tests/test_fiber.cc.s
 
+tests/test_iomanager.o: tests/test_iomanager.cc.o
+
+.PHONY : tests/test_iomanager.o
+
+# target to build an object file
+tests/test_iomanager.cc.o:
+	$(MAKE) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o
+.PHONY : tests/test_iomanager.cc.o
+
+tests/test_iomanager.i: tests/test_iomanager.cc.i
+
+.PHONY : tests/test_iomanager.i
+
+# target to preprocess a source file
+tests/test_iomanager.cc.i:
+	$(MAKE) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.i
+.PHONY : tests/test_iomanager.cc.i
+
+tests/test_iomanager.s: tests/test_iomanager.cc.s
+
+.PHONY : tests/test_iomanager.s
+
+# target to generate assembly for a file
+tests/test_iomanager.cc.s:
+	$(MAKE) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.s
+.PHONY : tests/test_iomanager.cc.s
+
 tests/test_log.o: tests/test_log.cc.o
 
 .PHONY : tests/test_log.o
@@ -661,6 +728,7 @@ help:
 	@echo "... test_thread"
 	@echo "... test_scheduler"
 	@echo "... test_log"
+	@echo "... test_iomanager"
 	@echo "... test_fiber"
 	@echo "... test_config"
 	@echo "... sylar"
@@ -670,6 +738,9 @@ help:
 	@echo "... sylar/fiber/fiber.o"
 	@echo "... sylar/fiber/fiber.i"
 	@echo "... sylar/fiber/fiber.s"
+	@echo "... sylar/fiber/iomanager.o"
+	@echo "... sylar/fiber/iomanager.i"
+	@echo "... sylar/fiber/iomanager.s"
 	@echo "... sylar/fiber/scheduler.o"
 	@echo "... sylar/fiber/scheduler.i"
 	@echo "... sylar/fiber/scheduler.s"
@@ -706,6 +777,9 @@ help:
 	@echo "... tests/test_fiber.o"
 	@echo "... tests/test_fiber.i"
 	@echo "... tests/test_fiber.s"
+	@echo "... tests/test_iomanager.o"
+	@echo "... tests/test_iomanager.i"
+	@echo "... tests/test_iomanager.s"
 	@echo "... tests/test_log.o"
 	@echo "... tests/test_log.i"
 	@echo "... tests/test_log.s"

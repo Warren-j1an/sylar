@@ -39,7 +39,7 @@ void IOManager::FdContext::triggerEvent(Event event) {
             << events << "\nbacktrace:\n" << BacktraceToString(100, 2, "    ");
         return;
     }
-    events = (Event)(event & ~event);
+    events = (Event)(events & ~event);
     EventContext& ctx = getContext(event);
     if (ctx.cb) {
         ctx.scheduler->schedule(&ctx.cb);
@@ -235,7 +235,7 @@ void IOManager::tickle() {
 
 bool IOManager::stopping() {
     uint64_t timeout = 0;
-    stopping(timeout);
+    return stopping(timeout);
 }
 
 void IOManager::idle() {
@@ -251,33 +251,68 @@ void IOManager::idle() {
             SYLAR_LOG_INFO(g_logger) << "name=" << getName() << " idle stopping exit";
             break;
         }
-        int rt;
+        int event_num;
         do {
             if (next_timeout != ~0ull) {
                 next_timeout = (int)next_timeout > MAX_TIMEOUT ? MAX_TIMEOUT : next_timeout;
             } else {
                 next_timeout = MAX_TIMEOUT;
             }
-            rt = epoll_wait(m_epfd, events, MAX_EVENT, next_timeout);
-            if (rt >= 0 || errno == EINTR) {
+            event_num = epoll_wait(m_epfd, events, MAX_EVENT, next_timeout);
+            if (event_num >= 0 || errno == EINTR) {
                 break;
             }
         } while (true);
+        // timer callbacks
         std::vector<std::function<void()>> cbs;
         listExpiredCb(cbs);
         if (!cbs.empty()) {
             schedule(cbs.begin(), cbs.end());
             cbs.clear();
         }
-        for (int i = 0; i < rt; ++i) {
+        // epoll event
+        for (int i = 0; i < event_num; ++i) {
             epoll_event& event = events[i];
             if (event.data.fd == m_tickleFds[0]) {
                 uint8_t dummy[256];
                 while(read(m_tickleFds[0], dummy, sizeof(dummy)) > 0);
                 continue;
             }
-
+            FdContext* fd_ctx = (FdContext*)event.data.ptr;
+            FdContext::MutexType::Lock lock(fd_ctx->mutex);
+            if (event.events & (EPOLLERR | EPOLLHUP)) {
+                event.events |= (EPOLLIN | EPOLLOUT) & fd_ctx->events;
+            }
+            int real_event = NONE;
+            if (event.events & EPOLLIN) {
+                real_event |= EPOLLIN;
+            }
+            if (event.events & EPOLLOUT) {
+                real_event |= EPOLLOUT;
+            }
+            if ((fd_ctx->events & real_event) == NONE) {
+                continue;
+            }
+            int left_event = fd_ctx->events & ~real_event;
+            int op = left_event ? EPOLL_CTL_MOD : EPOLL_CTL_DEL;
+            event.events = EPOLLET | left_event;
+            int rt = epoll_ctl(m_epfd, op, fd_ctx->fd, &event);
+            if (rt == -1) {
+                SYLAR_LOG_ERROR(g_logger) << "epoll_ctl(" << m_epfd << ", " << (EpollCtlOp)op  << ", "
+                    << fd_ctx->fd << ", " << (EPOLL_EVENTS)event.events << "):" << rt << " (" << errno
+                    << ")(" << strerror(errno) << ") fd_ctx->envents=" << (EPOLL_EVENTS)fd_ctx->events;
+                continue;
+            }
+            if (real_event & Event::READ) {
+                fd_ctx->triggerEvent(Event::READ);
+                --m_pendingEventCount;
+            }
+            if (real_event & Event::WRITE) {
+                fd_ctx->triggerEvent(Event::WRITE);
+                --m_pendingEventCount;
+            }
         }
+        Fiber::YeildToHold();
     }
 }
 
