@@ -31,6 +31,8 @@ public:
     virtual ~Scheduler();
     void start();
     void stop();
+    void switchTo(pid_t thread = -1);
+    std::ostream& dump(std::ostream& os);
     const std::string& getName() const { return m_name; }
     static Scheduler *GetThis();
     static Fiber *GetMainFiber();
