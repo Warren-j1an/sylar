@@ -14,6 +14,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/mnt/d/dev/sylar/sylar/log/log_event.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/log/log_event.cc.o"
   "/mnt/d/dev/sylar/sylar/log/log_formatter.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/log/log_formatter.cc.o"
   "/mnt/d/dev/sylar/sylar/log/log_level.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/log/log_level.cc.o"
+  "/mnt/d/dev/sylar/sylar/socket/hook.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/socket/hook.cc.o"
   "/mnt/d/dev/sylar/sylar/thread/mutex.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/thread/mutex.cc.o"
   "/mnt/d/dev/sylar/sylar/thread/thread.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/thread/thread.cc.o"
   "/mnt/d/dev/sylar/sylar/util/util.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/util/util.cc.o"
@@ -31,6 +32,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../sylar/config"
   "../sylar/fiber"
   "../sylar/log"
+  "../sylar/socket"
   "../sylar/thread"
   "../sylar/util"
   )

@@ -6,4 +6,5 @@
 /mnt/d/dev/sylar/build/CMakeFiles/test_iomanager.dir
 /mnt/d/dev/sylar/build/CMakeFiles/test_fiber.dir
 /mnt/d/dev/sylar/build/CMakeFiles/test_config.dir
+/mnt/d/dev/sylar/build/CMakeFiles/test_hook.dir
 /mnt/d/dev/sylar/build/CMakeFiles/sylar.dir

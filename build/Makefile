@@ -192,6 +192,19 @@ test_config/fast:
 .PHONY : test_config/fast
 
 #=============================================================================
+# Target rules for targets named test_hook
+
+# Build rule for target.
+test_hook: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_hook
+.PHONY : test_hook
+
+# fast build rule for target.
+test_hook/fast:
+	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/build
+.PHONY : test_hook/fast
+
+#=============================================================================
 # Target rules for targets named sylar
 
 # Build rule for target.
@@ -474,6 +487,33 @@ sylar/log/log_level.cc.s:
 	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/log/log_level.cc.s
 .PHONY : sylar/log/log_level.cc.s
 
+sylar/socket/hook.o: sylar/socket/hook.cc.o
+
+.PHONY : sylar/socket/hook.o
+
+# target to build an object file
+sylar/socket/hook.cc.o:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/socket/hook.cc.o
+.PHONY : sylar/socket/hook.cc.o
+
+sylar/socket/hook.i: sylar/socket/hook.cc.i
+
+.PHONY : sylar/socket/hook.i
+
+# target to preprocess a source file
+sylar/socket/hook.cc.i:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/socket/hook.cc.i
+.PHONY : sylar/socket/hook.cc.i
+
+sylar/socket/hook.s: sylar/socket/hook.cc.s
+
+.PHONY : sylar/socket/hook.s
+
+# target to generate assembly for a file
+sylar/socket/hook.cc.s:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/socket/hook.cc.s
+.PHONY : sylar/socket/hook.cc.s
+
 sylar/thread/mutex.o: sylar/thread/mutex.cc.o
 
 .PHONY : sylar/thread/mutex.o
@@ -609,6 +649,33 @@ tests/test_fiber.cc.s:
 	$(MAKE) -f CMakeFiles/test_fiber.dir/build.make CMakeFiles/test_fiber.dir/tests/test_fiber.cc.s
 .PHONY : tests/test_fiber.cc.s
 
+tests/test_hook.o: tests/test_hook.cc.o
+
+.PHONY : tests/test_hook.o
+
+# target to build an object file
+tests/test_hook.cc.o:
+	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cc.o
+.PHONY : tests/test_hook.cc.o
+
+tests/test_hook.i: tests/test_hook.cc.i
+
+.PHONY : tests/test_hook.i
+
+# target to preprocess a source file
+tests/test_hook.cc.i:
+	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cc.i
+.PHONY : tests/test_hook.cc.i
+
+tests/test_hook.s: tests/test_hook.cc.s
+
+.PHONY : tests/test_hook.s
+
+# target to generate assembly for a file
+tests/test_hook.cc.s:
+	$(MAKE) -f CMakeFiles/test_hook.dir/build.make CMakeFiles/test_hook.dir/tests/test_hook.cc.s
+.PHONY : tests/test_hook.cc.s
+
 tests/test_iomanager.o: tests/test_iomanager.cc.o
 
 .PHONY : tests/test_iomanager.o
@@ -731,6 +798,7 @@ help:
 	@echo "... test_iomanager"
 	@echo "... test_fiber"
 	@echo "... test_config"
+	@echo "... test_hook"
 	@echo "... sylar"
 	@echo "... sylar/config/config.o"
 	@echo "... sylar/config/config.i"
@@ -762,6 +830,9 @@ help:
 	@echo "... sylar/log/log_level.o"
 	@echo "... sylar/log/log_level.i"
 	@echo "... sylar/log/log_level.s"
+	@echo "... sylar/socket/hook.o"
+	@echo "... sylar/socket/hook.i"
+	@echo "... sylar/socket/hook.s"
 	@echo "... sylar/thread/mutex.o"
 	@echo "... sylar/thread/mutex.i"
 	@echo "... sylar/thread/mutex.s"
@@ -777,6 +848,9 @@ help:
 	@echo "... tests/test_fiber.o"
 	@echo "... tests/test_fiber.i"
 	@echo "... tests/test_fiber.s"
+	@echo "... tests/test_hook.o"
+	@echo "... tests/test_hook.i"
+	@echo "... tests/test_hook.s"
 	@echo "... tests/test_iomanager.o"
 	@echo "... tests/test_iomanager.i"
 	@echo "... tests/test_iomanager.s"

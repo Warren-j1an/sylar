@@ -4,10 +4,13 @@
 #include <unordered_map>
 
 #include "config_var.h"
+#include "mutex.h"
 
 namespace sylar {
 class Config {
 public:
+    typedef RWMutex RWMutexType;
+
     template<typename T>
     static typename ConfigVar<T>::ptr Lookup(const std::string& name, const T& default_value, const std::string& description = "") {
         auto it = GetDatas().find(name);
@@ -53,6 +56,11 @@ private:
     static std::unordered_map<std::string, ConfigVarBase::ptr>& GetDatas() {
         static std::unordered_map<std::string, ConfigVarBase::ptr> m_datas;
         return m_datas;
+    }
+
+    static RWMutexType& GetMutex() {
+        static RWMutexType s_mutex;
+        return s_mutex;
     }
 };
 }

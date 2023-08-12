@@ -4,7 +4,7 @@
 #include <list>
 
 namespace sylar {
-void listAllMember(const std::string& name, const YAML::Node& node, 
+void listAllMember(const std::string& name, const YAML::Node& node,
                    std::list<std::pair<std::string, const YAML::Node>>& output) {
     if(name.find_first_not_of("abcdefghikjlmnopqrstuvwxyz._012345678") != std::string::npos) {
         SYLAR_LOG_ERROR(SYLAR_LOG_NAME("root")) << "Config invalid name: " << name << " : " << node;
@@ -43,11 +43,13 @@ void Config::LoadFromYaml(const YAML::Node& root) {
 }
 
 ConfigVarBase::ptr Config::LookupBase(const std::string& name) {
+    RWMutexType::ReadLock lock(GetMutex());
     auto it = GetDatas().find(name);
     return it == GetDatas().end() ? nullptr : it->second;
 }
 
 void Config::Visit(std::function<void(ConfigVarBase::ptr)> cb) {
+    RWMutexType::ReadLock lock(GetMutex());
     auto m_map = GetDatas();
     for (auto it = m_map.begin(); it != m_map.end(); it++) {
         cb(it->second);

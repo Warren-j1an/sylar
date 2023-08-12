@@ -14,6 +14,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../sylar/config"
   "../sylar/fiber"
   "../sylar/log"
+  "../sylar/socket"
   "../sylar/thread"
   "../sylar/util"
   )

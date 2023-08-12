@@ -6,7 +6,7 @@ CXX_FLAGS =  -Wno-deprecated -Wno-unused-function
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/mnt/d/dev/sylar/. -I/mnt/d/dev/sylar/sylar/config -I/mnt/d/dev/sylar/sylar/fiber -I/mnt/d/dev/sylar/sylar/log -I/mnt/d/dev/sylar/sylar/thread -I/mnt/d/dev/sylar/sylar/util 
+CXX_INCLUDES = -I/mnt/d/dev/sylar/. -I/mnt/d/dev/sylar/sylar/config -I/mnt/d/dev/sylar/sylar/fiber -I/mnt/d/dev/sylar/sylar/log -I/mnt/d/dev/sylar/sylar/socket -I/mnt/d/dev/sylar/sylar/thread -I/mnt/d/dev/sylar/sylar/util 
 
 # Custom defines: CMakeFiles/test_log.dir/tests/test_log.cc.o_DEFINES = __FILE__="tests/test_log.cc"
 

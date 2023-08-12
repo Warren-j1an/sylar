@@ -1,1 +1,1 @@
-/usr/bin/c++   -Wno-deprecated -Wno-unused-function  -rdynamic CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o  -o ../bin/test_fiber   -L/mnt/d/dev/sylar/lib  -Wl,-rpath,/mnt/d/dev/sylar/lib ../lib/libsylar.so -lyaml-cpp -lpthread 
+/usr/bin/c++   -Wno-deprecated -Wno-unused-function  -rdynamic CMakeFiles/test_fiber.dir/tests/test_fiber.cc.o  -o ../bin/test_fiber   -L/mnt/d/dev/sylar/lib  -Wl,-rpath,/mnt/d/dev/sylar/lib ../lib/libsylar.so -ldl -lpthread -lyaml-cpp 

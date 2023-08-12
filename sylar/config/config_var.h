@@ -1,4 +1,4 @@
-#pragma once 
+#pragma once
 
 #include <algorithm>
 #include <functional>
@@ -7,6 +7,7 @@
 
 #include "config_cast.h"
 #include "log.h"
+#include "mutex.h"
 #include "util.h"
 
 namespace sylar {
@@ -14,7 +15,7 @@ class ConfigVarBase {
 public:
     typedef std::shared_ptr<ConfigVarBase> ptr;
 
-    ConfigVarBase(const std::string& name, const std::string& description = "") : 
+    ConfigVarBase(const std::string& name, const std::string& description = "") :
         m_name(name), m_description(description) {
         std::transform(m_name.begin(), m_name.end(), m_name.begin(), ::tolower);
     }
@@ -33,17 +34,19 @@ protected:
 template<typename T>
 class ConfigVar : public ConfigVarBase {
 public:
+    typedef RWMutex RWMutexType;
     typedef std::shared_ptr<ConfigVar> ptr;
     typedef std::function<void (const T& old_value, const T& new_value)> on_change_cb;
 
-    ConfigVar(const std::string& name, const T& default_val, const std::string& description = "") : 
+    ConfigVar(const std::string& name, const T& default_val, const std::string& description = "") :
         ConfigVarBase(name, description), m_val(default_val) {}
-    
+
     std::string toString() override {
         try {
+            RWMutexType::ReadLock lock(m_mutex);
             return LexicalCast<T, std::string>()(m_val);
         } catch (std::exception& e) {
-            SYLAR_LOG_ERROR(SYLAR_LOG_NAME("root")) << "ConfigVar::toString exception " << e.what() 
+            SYLAR_LOG_ERROR(SYLAR_LOG_NAME("root")) << "ConfigVar::toString exception " << e.what()
                 << " convert: " << getTypeName() << " to string" << " name=" << m_name;
         }
         return "";
@@ -54,7 +57,7 @@ public:
             setValue(LexicalCast<std::string, T>()(val));
             return true;
         } catch (std::exception& e) {
-            SYLAR_LOG_ERROR(SYLAR_LOG_NAME("root")) << "ConfigVar::fromString exception " << e.what() 
+            SYLAR_LOG_ERROR(SYLAR_LOG_NAME("root")) << "ConfigVar::fromString exception " << e.what()
                 << " convert string=" << val << " to " << getTypeName() << " name=" << m_name;
             return false;
         }
@@ -65,39 +68,49 @@ public:
     }
 
     const T getValue() {
+        RWMutexType::ReadLock lock(m_mutex);
         return m_val;
     }
 
     void setValue(const T& v) {
-        if (m_val != v) {
+        {
+            RWMutexType::ReadLock lock(m_mutex);
+            if (m_val != v) {
             for (auto cb : m_cbs) {
-                cb.second(m_val, v);
+                    cb.second(m_val, v);
+                }
             }
-            m_val = v;
-        } 
+        }
+        RWMutexType::WriteLock lock(m_mutex);
+        m_val = v;
     }
 
     uint64_t addListener(on_change_cb cb) {
         static uint64_t s_fun_id = 0;
+        RWMutexType::WriteLock lock(m_mutex);
         s_fun_id++;
         m_cbs[s_fun_id] = cb;
         return s_fun_id;
     }
 
     void delListener(uint64_t key) {
+        RWMutexType::WriteLock lock(m_mutex);
         m_cbs.erase(key);
     }
 
     on_change_cb getListener(uint64_t key) {
+        RWMutexType::ReadLock lock(m_mutex);
         auto it = m_cbs.find(key);
         return it == m_cbs.end() ? nullptr : it->second;
     }
 
     void clearListener() {
+        RWMutexType::WriteLock lock(m_mutex);
         m_cbs.clear();
     }
 
 private:
+    RWMutexType m_mutex;
     T m_val;
     std::map<uint64_t, on_change_cb> m_cbs;
 };

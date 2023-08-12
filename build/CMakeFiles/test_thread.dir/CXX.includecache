@@ -13,6 +13,8 @@ unordered_map
 -
 config_var.h
 ../sylar/config/config_var.h
+mutex.h
+../sylar/config/mutex.h
 
 ../sylar/config/config_cast.h
 boost/lexical_cast.hpp
@@ -53,6 +55,8 @@ config_cast.h
 ../sylar/config/config_cast.h
 log.h
 ../sylar/config/log.h
+mutex.h
+../sylar/config/mutex.h
 util.h
 ../sylar/config/util.h
 
