@@ -108,6 +108,13 @@ CMakeFiles/sylar.dir/sylar/log/log_formatter.cc.o: ../sylar/log/log_level.h
 CMakeFiles/sylar.dir/sylar/log/log_level.cc.o: ../sylar/log/log_level.cc
 CMakeFiles/sylar.dir/sylar/log/log_level.cc.o: ../sylar/log/log_level.h
 
+CMakeFiles/sylar.dir/sylar/socket/fd_manager.cc.o: ../sylar/thread/mutex.h
+CMakeFiles/sylar.dir/sylar/socket/fd_manager.cc.o: ../sylar/util/noncopyable.h
+CMakeFiles/sylar.dir/sylar/socket/fd_manager.cc.o: ../sylar/util/singleton.h
+CMakeFiles/sylar.dir/sylar/socket/fd_manager.cc.o: ../sylar/socket/fd_manager.cc
+CMakeFiles/sylar.dir/sylar/socket/fd_manager.cc.o: ../sylar/socket/fd_manager.h
+CMakeFiles/sylar.dir/sylar/socket/fd_manager.cc.o: ../sylar/socket/hook.h
+
 CMakeFiles/sylar.dir/sylar/socket/hook.cc.o: ../sylar/config/config.h
 CMakeFiles/sylar.dir/sylar/socket/hook.cc.o: ../sylar/config/config_cast.h
 CMakeFiles/sylar.dir/sylar/socket/hook.cc.o: ../sylar/config/config_var.h
@@ -125,6 +132,7 @@ CMakeFiles/sylar.dir/sylar/socket/hook.cc.o: ../sylar/thread/thread.h
 CMakeFiles/sylar.dir/sylar/socket/hook.cc.o: ../sylar/util/noncopyable.h
 CMakeFiles/sylar.dir/sylar/socket/hook.cc.o: ../sylar/util/singleton.h
 CMakeFiles/sylar.dir/sylar/socket/hook.cc.o: ../sylar/util/util.h
+CMakeFiles/sylar.dir/sylar/socket/hook.cc.o: ../sylar/socket/fd_manager.h
 CMakeFiles/sylar.dir/sylar/socket/hook.cc.o: ../sylar/socket/hook.cc
 CMakeFiles/sylar.dir/sylar/socket/hook.cc.o: ../sylar/socket/hook.h
 

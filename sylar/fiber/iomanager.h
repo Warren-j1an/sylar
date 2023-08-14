@@ -44,7 +44,7 @@ private:
 public:
     IOManager(size_t thread = 1, bool use_caller = true, const std::string& name = "");
     ~IOManager();
-    int addEvent(int fd, Event event, std::function<void()> cb);
+    int addEvent(int fd, Event event, std::function<void()> cb = nullptr);
     bool delEvent(int fd, Event event);
     bool cancelEvent(int fd, Event event);
     bool cancelAll(int fd);
