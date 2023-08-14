@@ -45,3 +45,30 @@ typedef int (*ioctl_fun)(int fd, unsigned long request, ...);
 typedef int (*getsockopt_fun)(int sockfd, int level, int optname, void *optval, socklen_t *optlen);
 typedef int (*setsockopt_fun)(int sockfd, int level, int optname, const void *optval, socklen_t optlen);
 }
+
+#define HOOK_FUN(XX) \
+    XX(sleep) \
+    XX(usleep) \
+    XX(nanosleep) \
+    XX(socket) \
+    XX(connect) \
+    XX(accept) \
+    XX(close) \
+    XX(read) \
+    XX(readv) \
+    XX(recv) \
+    XX(recvfrom) \
+    XX(recvmsg) \
+    XX(write) \
+    XX(writev) \
+    XX(send) \
+    XX(sendto) \
+    XX(sendmsg) \
+    XX(fcntl) \
+    XX(ioctl) \
+    XX(getsockopt) \
+    XX(setsockopt)
+
+#define XX(name) name ## _fun name ## _f = nullptr;
+    HOOK_FUN(XX);
+#undef XX

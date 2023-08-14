@@ -31,6 +31,7 @@ set(LIB_SRC
     sylar/log/log_formatter.cc
     sylar/log/log_appender.cc
     sylar/log/log.cc
+    sylar/socket/fd_manager.cc
     sylar/socket/hook.cc
     sylar/thread/mutex.cc
     sylar/thread/thread.cc
