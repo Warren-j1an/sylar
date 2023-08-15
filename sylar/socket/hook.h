@@ -69,6 +69,6 @@ typedef int (*setsockopt_fun)(int sockfd, int level, int optname, const void *op
     XX(getsockopt) \
     XX(setsockopt)
 
-#define XX(name) name ## _fun name ## _f = nullptr;
+#define XX(name) extern name ## _fun name ## _f;
     HOOK_FUN(XX);
 #undef XX

@@ -10,6 +10,10 @@
 #include <memory>
 #include <utility>
 
+#define XX(name) name ## _fun name ## _f = nullptr;
+    HOOK_FUN(XX);
+#undef XX
+
 void hook_init() {
     static bool is_inited = false;
     if (is_inited) {
@@ -60,7 +64,7 @@ static ssize_t do_io(int fd, OriginFun fun, const char* hook_fun_name,
     if (!sylar::is_hook_enable()) {
         return fun(fd, std::forward<Args>(args)...);
     }
-    sylar::FdCtx::ptr ctx = sylar::FdManager::GetInstance()->get(fd, false);
+    sylar::FdCtx::ptr ctx = sylar::FdManager::GetInstance()->get(fd);
     if (!ctx) {
         return fun(fd, std::forward<Args>(args)...);
     }
@@ -121,7 +125,7 @@ int connect_with_timeout(int fd, const struct sockaddr *addr,
     if (!sylar::is_hook_enable()) {
         return connect_f(fd, addr, addrlen);
     }
-    sylar::FdCtx::ptr ctx = sylar::FdManager::GetInstance()->get(fd, false);
+    sylar::FdCtx::ptr ctx = sylar::FdManager::GetInstance()->get(fd);
     if (!ctx || ctx->isClose()) {
         errno = EBADF;
         return -1;
@@ -217,7 +221,7 @@ int nanosleep(const struct timespec *req, struct timespec *rem) {
 }
 
 int socket(int domain, int type, int protocol) {
-    if (sylar::is_hook_enable()) {
+    if (!sylar::is_hook_enable()) {
         return socket_f(domain, type, protocol);
     }
     int fd = socket_f(domain, type, protocol);
@@ -226,5 +230,163 @@ int socket(int domain, int type, int protocol) {
     }
     sylar::FdManager::GetInstance()->get(fd, true);
     return fd;
+}
+
+int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen) {
+    connect_with_timeout(sockfd, addr, addrlen, s_connect_timeout);
+}
+
+int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen) {
+    int fd = do_io(sockfd, accept_f, "accept", sylar::IOManager::READ, SO_RCVTIMEO, addr, addrlen);
+    if (fd >= 0 && sylar::is_hook_enable()) {
+        sylar::FdManager::GetInstance()->get(fd, true);
+    }
+    return fd;
+}
+
+int close(int fd) {
+    if (!sylar::is_hook_enable()) {
+        return close_f(fd);
+    }
+    sylar::FdCtx::ptr ctx = sylar::FdManager::GetInstance()->get(fd);
+    if (ctx) {
+        sylar::IOManager* iom = sylar::IOManager::GetThis();
+        if (iom) {
+            iom->cancelAll(fd);
+        }
+        sylar::FdManager::GetInstance()->del(fd);
+    }
+    return close_f(fd);
+}
+
+ssize_t read(int fd, void *buf, size_t count) {
+    return do_io(fd, read_f, "read", sylar::IOManager::READ, SO_RCVTIMEO, buf, count);
+}
+
+ssize_t readv(int fd, const struct iovec *iov, int iovcnt) {
+    return do_io(fd, readv_f, "readv", sylar::IOManager::READ, SO_RCVTIMEO, iov, iovcnt);
+}
+
+ssize_t recv(int sockfd, void *buf, size_t len, int flags) {
+    return do_io(sockfd, recv_f, "recv", sylar::IOManager::READ, SO_RCVTIMEO, buf, len, flags);
+}
+
+ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags, struct sockaddr *src_addr, socklen_t *addrlen) {
+    return do_io(sockfd, recvfrom_f, "recvfrom", sylar::IOManager::READ, SO_RCVTIMEO, buf, len, flags, src_addr, addrlen);
+}
+
+ssize_t recvmsg(int sockfd, struct msghdr *msg, int flags) {
+    return do_io(sockfd, recvmsg_f, "recvmsg", sylar::IOManager::READ, SO_RCVTIMEO, msg, flags);
+}
+
+ssize_t write(int fd, const void *buf, size_t count) {
+    return do_io(fd, write_f, "write", sylar::IOManager::WRITE, SO_SNDTIMEO, buf, count);
+}
+
+ssize_t writev(int fd, const struct iovec *iov, int iovcnt) {
+    return do_io(fd, writev_f, "writev", sylar::IOManager::WRITE, SO_SNDTIMEO, iov, iovcnt);
+}
+
+ssize_t send(int sockfd, const void *buf, size_t len, int flags) {
+    return do_io(sockfd, send_f, "send", sylar::IOManager::WRITE, SO_SNDTIMEO, buf, len, flags);
+}
+
+ssize_t sendto(int sockfd, const void *buf, size_t len, int flags, const struct sockaddr *dest_addr, socklen_t addrlen) {
+    return do_io(sockfd, sendto_f, "sendto", sylar::IOManager::WRITE, SO_SNDTIMEO, buf, len, flags, dest_addr, addrlen);
+}
+
+ssize_t sendmsg(int sockfd, const struct msghdr *msg, int flags) {
+    return do_io(sockfd, sendmsg_f, "sendmsg", sylar::IOManager::WRITE, SO_SNDTIMEO, msg, flags);
+}
+
+int fcntl(int fd, int cmd, ... /* arg */ ) {
+    va_list va;
+    va_start(va, cmd);
+    switch (cmd) {
+        case F_SETFL:
+            {
+                int arg = va_arg(va, int);
+                va_end(va);
+                sylar::FdCtx::ptr ctx = sylar::FdManager::GetInstance()->get(fd);
+                if(!ctx || ctx->isClose() || !ctx->isSocket()) {
+                    return fcntl_f(fd, cmd, arg);
+                }
+                ctx->setUserNonblock(arg & O_NONBLOCK);
+                if(ctx->getSysNonblock()) {
+                    arg |= O_NONBLOCK;
+                } else {
+                    arg &= ~O_NONBLOCK;
+                }
+                return fcntl_f(fd, cmd, arg);
+            }
+        case F_GETFL:
+            {
+                va_end(va);
+                int arg = fcntl_f(fd, cmd);
+                sylar::FdCtx::ptr ctx = sylar::FdManager::GetInstance()->get(fd);
+                if(!ctx || ctx->isClose() || !ctx->isSocket()) {
+                    return arg;
+                }
+                if(ctx->getUserNonblock()) {
+                    return arg | O_NONBLOCK;
+                } else {
+                    return arg & ~O_NONBLOCK;
+                }
+            }
+        case F_DUPFD:
+        case F_DUPFD_CLOEXEC:
+        case F_SETFD:
+        case F_SETOWN:
+        case F_SETSIG:
+        case F_SETLEASE:
+        case F_NOTIFY:
+            {
+                int arg = va_arg(va, int);
+                va_end(va);
+                return fcntl_f(fd, cmd, arg);
+            }
+        case F_GETFD:
+        case F_GETOWN:
+        case F_GETSIG:
+        case F_GETLEASE:
+            {
+                va_end(va);
+                return fcntl_f(fd, cmd);
+            }
+        case F_SETLK:
+        case F_SETLKW:
+        case F_GETLK:
+            {
+                struct flock* arg = va_arg(va, struct flock*);
+                va_end(va);
+                return fcntl_f(fd, cmd, arg);
+            }
+        case F_GETOWN_EX:
+        case F_SETOWN_EX:
+            {
+                struct f_owner_exlock* arg = va_arg(va, struct f_owner_exlock*);
+                va_end(va);
+                return fcntl_f(fd, cmd, arg);
+            }
+        default:
+            va_end(va);
+            return fcntl_f(fd, cmd);
+    }
+}
+
+int ioctl(int fd, unsigned long request, ...) {
+    va_list va;
+    va_start(va, request);
+    void* arg = va_arg(va, void*);
+    va_end(va);
+    if (FIONBIO == request) {
+        bool user_nonblock = !!*(int*)arg;
+        sylar::FdCtx::ptr ctx = sylar::FdManager::GetInstance()->get(fd);
+        if(!ctx || ctx->isClose() || !ctx->isSocket()) {
+            return ioctl_f(fd, request, arg);
+        }
+        ctx->setUserNonblock(user_nonblock);
+    }
+    return ioctl_f(fd, request, arg);
 }
 }
