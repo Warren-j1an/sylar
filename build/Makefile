@@ -487,6 +487,33 @@ sylar/log/log_level.cc.s:
 	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/log/log_level.cc.s
 .PHONY : sylar/log/log_level.cc.s
 
+sylar/socket/address.o: sylar/socket/address.cc.o
+
+.PHONY : sylar/socket/address.o
+
+# target to build an object file
+sylar/socket/address.cc.o:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/socket/address.cc.o
+.PHONY : sylar/socket/address.cc.o
+
+sylar/socket/address.i: sylar/socket/address.cc.i
+
+.PHONY : sylar/socket/address.i
+
+# target to preprocess a source file
+sylar/socket/address.cc.i:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/socket/address.cc.i
+.PHONY : sylar/socket/address.cc.i
+
+sylar/socket/address.s: sylar/socket/address.cc.s
+
+.PHONY : sylar/socket/address.s
+
+# target to generate assembly for a file
+sylar/socket/address.cc.s:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/socket/address.cc.s
+.PHONY : sylar/socket/address.cc.s
+
 sylar/socket/fd_manager.o: sylar/socket/fd_manager.cc.o
 
 .PHONY : sylar/socket/fd_manager.o
@@ -857,6 +884,9 @@ help:
 	@echo "... sylar/log/log_level.o"
 	@echo "... sylar/log/log_level.i"
 	@echo "... sylar/log/log_level.s"
+	@echo "... sylar/socket/address.o"
+	@echo "... sylar/socket/address.i"
+	@echo "... sylar/socket/address.s"
 	@echo "... sylar/socket/fd_manager.o"
 	@echo "... sylar/socket/fd_manager.i"
 	@echo "... sylar/socket/fd_manager.s"

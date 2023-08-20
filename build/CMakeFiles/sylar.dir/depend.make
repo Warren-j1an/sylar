@@ -108,6 +108,19 @@ CMakeFiles/sylar.dir/sylar/log/log_formatter.cc.o: ../sylar/log/log_level.h
 CMakeFiles/sylar.dir/sylar/log/log_level.cc.o: ../sylar/log/log_level.cc
 CMakeFiles/sylar.dir/sylar/log/log_level.cc.o: ../sylar/log/log_level.h
 
+CMakeFiles/sylar.dir/sylar/socket/address.cc.o: ../sylar/log/log.h
+CMakeFiles/sylar.dir/sylar/socket/address.cc.o: ../sylar/log/log_appender.h
+CMakeFiles/sylar.dir/sylar/socket/address.cc.o: ../sylar/log/log_event.h
+CMakeFiles/sylar.dir/sylar/socket/address.cc.o: ../sylar/log/log_formatter.h
+CMakeFiles/sylar.dir/sylar/socket/address.cc.o: ../sylar/log/log_level.h
+CMakeFiles/sylar.dir/sylar/socket/address.cc.o: ../sylar/thread/mutex.h
+CMakeFiles/sylar.dir/sylar/socket/address.cc.o: ../sylar/thread/thread.h
+CMakeFiles/sylar.dir/sylar/socket/address.cc.o: ../sylar/util/noncopyable.h
+CMakeFiles/sylar.dir/sylar/socket/address.cc.o: ../sylar/util/singleton.h
+CMakeFiles/sylar.dir/sylar/socket/address.cc.o: ../sylar/util/util.h
+CMakeFiles/sylar.dir/sylar/socket/address.cc.o: ../sylar/socket/address.cc
+CMakeFiles/sylar.dir/sylar/socket/address.cc.o: ../sylar/socket/address.h
+
 CMakeFiles/sylar.dir/sylar/socket/fd_manager.cc.o: ../sylar/thread/mutex.h
 CMakeFiles/sylar.dir/sylar/socket/fd_manager.cc.o: ../sylar/util/noncopyable.h
 CMakeFiles/sylar.dir/sylar/socket/fd_manager.cc.o: ../sylar/util/singleton.h

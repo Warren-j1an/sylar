@@ -108,6 +108,19 @@ CMakeFiles/sylar.dir/sylar/log/log_formatter.cc.o
 CMakeFiles/sylar.dir/sylar/log/log_level.cc.o
  /mnt/d/dev/sylar/sylar/log/log_level.cc
  /mnt/d/dev/sylar/sylar/log/log_level.h
+CMakeFiles/sylar.dir/sylar/socket/address.cc.o
+ ../sylar/log/log.h
+ ../sylar/log/log_appender.h
+ ../sylar/log/log_event.h
+ ../sylar/log/log_formatter.h
+ ../sylar/log/log_level.h
+ ../sylar/thread/mutex.h
+ ../sylar/thread/thread.h
+ ../sylar/util/noncopyable.h
+ ../sylar/util/singleton.h
+ ../sylar/util/util.h
+ /mnt/d/dev/sylar/sylar/socket/address.cc
+ /mnt/d/dev/sylar/sylar/socket/address.h
 CMakeFiles/sylar.dir/sylar/socket/fd_manager.cc.o
  ../sylar/thread/mutex.h
  ../sylar/util/noncopyable.h

@@ -11,6 +11,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/sylar.dir/sylar/log/log_event.cc.o"
   "CMakeFiles/sylar.dir/sylar/log/log_formatter.cc.o"
   "CMakeFiles/sylar.dir/sylar/log/log_level.cc.o"
+  "CMakeFiles/sylar.dir/sylar/socket/address.cc.o"
   "CMakeFiles/sylar.dir/sylar/socket/fd_manager.cc.o"
   "CMakeFiles/sylar.dir/sylar/socket/hook.cc.o"
   "CMakeFiles/sylar.dir/sylar/thread/mutex.cc.o"

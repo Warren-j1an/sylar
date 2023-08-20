@@ -233,7 +233,7 @@ int socket(int domain, int type, int protocol) {
 }
 
 int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen) {
-    connect_with_timeout(sockfd, addr, addrlen, s_connect_timeout);
+    return connect_with_timeout(sockfd, addr, addrlen, s_connect_timeout);
 }
 
 int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen) {
@@ -388,5 +388,25 @@ int ioctl(int fd, unsigned long request, ...) {
         ctx->setUserNonblock(user_nonblock);
     }
     return ioctl_f(fd, request, arg);
+}
+
+int getsockopt(int sockfd, int level, int optname, void *optval, socklen_t *optlen) {
+    return getsockopt_f(sockfd, level, optname, optval, optlen);
+}
+
+int setsockopt(int sockfd, int level, int optname, const void *optval, socklen_t optlen) {
+    if (!sylar::is_hook_enable()) {
+        return setsockopt_f(sockfd, level, optname, optval, optlen);
+    }
+    if (level == SOL_SOCKET) {
+        if (optname == SO_RCVTIMEO || optname == SO_SNDTIMEO) {
+            sylar::FdCtx::ptr ctx = sylar::FdManager::GetInstance()->get(sockfd);
+            if (ctx) {
+                const timeval* v = (const timeval*) optval;
+                ctx->setTimeout(optname, v->tv_sec * 1000 + v->tv_usec / 1000);
+            }
+        }
+    }
+    return setsockopt_f(sockfd, level, optname, optval, optlen);
 }
 }
