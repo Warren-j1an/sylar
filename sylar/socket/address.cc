@@ -3,8 +3,6 @@
 
 #include <cstring>
 #include <ifaddrs.h>
-#include <netdb.h>
-#include <sys/types.h>
 
 namespace sylar {
 static Logger::ptr g_logger = SYLAR_LOG_NAME("root");
@@ -76,6 +74,20 @@ Address::ptr Address::LookupAny(const std::string& host, int family, int type, i
     std::vector<Address::ptr> result;
     if (Lookup(result, host, family, type, protocol)) {
         return result[0];
+    }
+    return nullptr;
+}
+
+std::shared_ptr<IPAddress> LookupAnyIPAddress(const std::string& host, int family,
+                                              int type, int protocol) {
+    std::vector<Address::ptr> result;
+    if (Lookup(result, host, family, type, protocol)) {
+        for (auto& i : result) {
+            IPAddress::ptr v = std::dynamic_pointer_cast<IPAddress>(i);
+            if (v) {
+                return v;
+            }
+        }
     }
     return nullptr;
 }
@@ -175,5 +187,30 @@ bool Address::operator==(const Address& rhs) const {
 
 bool Address::operator!=(const Address& rhs) const {
     return !(*this == rhs);
+}
+
+IPAddress::ptr IPAddress::Create(const char* addr, uint16_t port = 0) {
+    addrinfo hints, *results;
+    memset(&hints, 0, sizeof(addrinfo));
+    hints.ai_flags = AI_NUMERICHOST;
+    hints.ai_family = AI_UNSPEC;
+    int rt = getaddrinfo(address, NULL, &hints, &results);
+    if (rt != 0) {
+        SYLAR_LOG_ERROR(g_logger) << "IPAdress::Create(" << address << ", "
+            << port << ") error=" << rt << " errno=" << gai_strerror(rt);
+        return nullptr;
+    }
+    try {
+        IPAdress::ptr result = std::dynamic_pointer_cast<IPAdress>(
+                Adress::Create(results->ai_addr, (socklen_t)results->ai_addrlen));
+        if (result) {
+            result->setPort(port);
+        }
+        freeaddrinfo(results);
+        return result;
+    } catch (...) {
+        freeaddrinfo(results);
+        return nullptr;
+    }
 }
 }
