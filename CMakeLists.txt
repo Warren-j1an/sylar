@@ -31,8 +31,8 @@ set(LIB_SRC
     sylar/log/log_formatter.cc
     sylar/log/log_appender.cc
     sylar/log/log.cc
-    sylar/socket/fd_manager.cc
     sylar/socket/address.cc
+    sylar/socket/fd_manager.cc
     sylar/socket/hook.cc
     sylar/thread/mutex.cc
     sylar/thread/thread.cc
@@ -50,6 +50,7 @@ set(LIBS
     )
 
 if(BUILD_TEST)
+sylar_add_executable(test_address "tests/test_address.cc" sylar "${LIBS}")
 sylar_add_executable(test_config "tests/test_config.cc" sylar "${LIBS}")
 sylar_add_executable(test_fiber "tests/test_fiber.cc" sylar "${LIBS}")
 sylar_add_executable(test_hook "tests/test_hook.cc" sylar "${LIBS}")

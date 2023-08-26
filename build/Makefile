@@ -166,6 +166,19 @@ test_iomanager/fast:
 .PHONY : test_iomanager/fast
 
 #=============================================================================
+# Target rules for targets named test_config
+
+# Build rule for target.
+test_config: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_config
+.PHONY : test_config
+
+# fast build rule for target.
+test_config/fast:
+	$(MAKE) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/build
+.PHONY : test_config/fast
+
+#=============================================================================
 # Target rules for targets named test_fiber
 
 # Build rule for target.
@@ -179,17 +192,17 @@ test_fiber/fast:
 .PHONY : test_fiber/fast
 
 #=============================================================================
-# Target rules for targets named test_config
+# Target rules for targets named test_address
 
 # Build rule for target.
-test_config: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 test_config
-.PHONY : test_config
+test_address: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_address
+.PHONY : test_address
 
 # fast build rule for target.
-test_config/fast:
-	$(MAKE) -f CMakeFiles/test_config.dir/build.make CMakeFiles/test_config.dir/build
-.PHONY : test_config/fast
+test_address/fast:
+	$(MAKE) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/build
+.PHONY : test_address/fast
 
 #=============================================================================
 # Target rules for targets named test_hook
@@ -649,6 +662,33 @@ sylar/util/util.cc.s:
 	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/util/util.cc.s
 .PHONY : sylar/util/util.cc.s
 
+tests/test_address.o: tests/test_address.cc.o
+
+.PHONY : tests/test_address.o
+
+# target to build an object file
+tests/test_address.cc.o:
+	$(MAKE) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/tests/test_address.cc.o
+.PHONY : tests/test_address.cc.o
+
+tests/test_address.i: tests/test_address.cc.i
+
+.PHONY : tests/test_address.i
+
+# target to preprocess a source file
+tests/test_address.cc.i:
+	$(MAKE) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/tests/test_address.cc.i
+.PHONY : tests/test_address.cc.i
+
+tests/test_address.s: tests/test_address.cc.s
+
+.PHONY : tests/test_address.s
+
+# target to generate assembly for a file
+tests/test_address.cc.s:
+	$(MAKE) -f CMakeFiles/test_address.dir/build.make CMakeFiles/test_address.dir/tests/test_address.cc.s
+.PHONY : tests/test_address.cc.s
+
 tests/test_config.o: tests/test_config.cc.o
 
 .PHONY : tests/test_config.o
@@ -850,8 +890,9 @@ help:
 	@echo "... test_scheduler"
 	@echo "... test_log"
 	@echo "... test_iomanager"
-	@echo "... test_fiber"
 	@echo "... test_config"
+	@echo "... test_fiber"
+	@echo "... test_address"
 	@echo "... test_hook"
 	@echo "... sylar"
 	@echo "... sylar/config/config.o"
@@ -902,6 +943,9 @@ help:
 	@echo "... sylar/util/util.o"
 	@echo "... sylar/util/util.i"
 	@echo "... sylar/util/util.s"
+	@echo "... tests/test_address.o"
+	@echo "... tests/test_address.i"
+	@echo "... tests/test_address.s"
 	@echo "... tests/test_config.o"
 	@echo "... tests/test_config.i"
 	@echo "... tests/test_config.s"
