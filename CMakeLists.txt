@@ -34,6 +34,7 @@ set(LIB_SRC
     sylar/socket/address.cc
     sylar/socket/fd_manager.cc
     sylar/socket/hook.cc
+    sylar/socket/socket.cc
     sylar/thread/mutex.cc
     sylar/thread/thread.cc
     sylar/util/util.cc
