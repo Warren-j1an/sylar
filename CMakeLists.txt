@@ -12,6 +12,7 @@ set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -Wno-deprecated -Wno-unused-function")
 include_directories(.)
 include_directories(${PROJECT_SOURCE_DIR}/sylar/config)
 include_directories(${PROJECT_SOURCE_DIR}/sylar/fiber)
+include_directories(${PROJECT_SOURCE_DIR}/sylar/http)
 include_directories(${PROJECT_SOURCE_DIR}/sylar/log)
 include_directories(${PROJECT_SOURCE_DIR}/sylar/socket)
 include_directories(${PROJECT_SOURCE_DIR}/sylar/thread)
@@ -26,6 +27,7 @@ set(LIB_SRC
     sylar/fiber/iomanager.cc
     sylar/fiber/scheduler.cc
     sylar/fiber/timer.cc
+    sylar/http/bytearray.cc
     sylar/log/log_level.cc
     sylar/log/log_event.cc
     sylar/log/log_formatter.cc
