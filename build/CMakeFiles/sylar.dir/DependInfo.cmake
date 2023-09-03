@@ -17,8 +17,10 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/mnt/d/dev/sylar/sylar/socket/address.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/socket/address.cc.o"
   "/mnt/d/dev/sylar/sylar/socket/fd_manager.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/socket/fd_manager.cc.o"
   "/mnt/d/dev/sylar/sylar/socket/hook.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/socket/hook.cc.o"
+  "/mnt/d/dev/sylar/sylar/socket/socket.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/socket/socket.cc.o"
   "/mnt/d/dev/sylar/sylar/thread/mutex.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/thread/mutex.cc.o"
   "/mnt/d/dev/sylar/sylar/thread/thread.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/thread/thread.cc.o"
+  "/mnt/d/dev/sylar/sylar/util/fsUtil.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/util/fsUtil.cc.o"
   "/mnt/d/dev/sylar/sylar/util/util.cc" "/mnt/d/dev/sylar/build/CMakeFiles/sylar.dir/sylar/util/util.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

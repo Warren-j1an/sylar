@@ -32,7 +32,7 @@ public:
     static Socket::ptr CreateTCPSocket();
     static Socket::ptr CreateUDPSocket();
     static Socket::ptr CreateTCPSocket6();
-    static Socket::ptr CreateUDPSocket();
+    static Socket::ptr CreateUDPSocket6();
     static Socket::ptr CreateUnixTCPSocket();
     static Socket::ptr CreateUnixUDPSocket();
 
@@ -61,19 +61,20 @@ public:
     template<typename T>
     bool getOption(int level, int option, T& result) {
         socklen_t length = sizeof(T);
-        return getprotoent(level, option, &result, &length);
+        return getOption(level, option, &result, &length);
     }
 
     template<typename T>
     bool setOption(int level, int option, const T& value) {
-        return setprotoent(level, option, &value, sizeof(T));
+        return setOption(level, option, &value, sizeof(T));
     }
 
     virtual Socket::ptr accept();
-    virtual bool bind(const Address::ptr addres);
-    virtual bool connect(const Address::ptr addres, uint64_t timeout_ms = -1);
+    virtual bool bind(const Address::ptr address);
+    virtual bool connect(const Address::ptr address, uint64_t timeout_ms = -1);
     virtual bool reconnect(uint64_t timeout_ms = -1);
     virtual bool listen(int backlog = SOMAXCONN);
+    virtual bool close();
     virtual int send(const void* buffer, size_t length, int flags = 0);
     virtual int send(const iovec* buffers, size_t length, int flags = 0);
     virtual int sendTo(const void* buffer, size_t length, const Address::ptr to, int flags = 0);

@@ -75,7 +75,7 @@ static ssize_t do_io(int fd, OriginFun fun, const char* hook_fun_name,
     if (!ctx->isSocket() || ctx->getUserNonblock()) {
         return fun(fd, std::forward<Args>(args)...);
     }
-    uint64_t timeout = ctx->getTimeot(timeout_type);
+    uint64_t timeout = ctx->getTimeout(timeout_type);
     std::shared_ptr<TimerInfo> timer_info = std::make_shared<TimerInfo>();
 
 retry:

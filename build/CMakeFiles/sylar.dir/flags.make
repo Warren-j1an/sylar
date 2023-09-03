@@ -34,9 +34,13 @@ CXX_INCLUDES = -I/mnt/d/dev/sylar/. -I/mnt/d/dev/sylar/sylar/config -I/mnt/d/dev
 
 # Custom defines: CMakeFiles/sylar.dir/sylar/socket/hook.cc.o_DEFINES = __FILE__="sylar/socket/hook.cc"
 
+# Custom defines: CMakeFiles/sylar.dir/sylar/socket/socket.cc.o_DEFINES = __FILE__="sylar/socket/socket.cc"
+
 # Custom defines: CMakeFiles/sylar.dir/sylar/thread/mutex.cc.o_DEFINES = __FILE__="sylar/thread/mutex.cc"
 
 # Custom defines: CMakeFiles/sylar.dir/sylar/thread/thread.cc.o_DEFINES = __FILE__="sylar/thread/thread.cc"
+
+# Custom defines: CMakeFiles/sylar.dir/sylar/util/fsUtil.cc.o_DEFINES = __FILE__="sylar/util/fsUtil.cc"
 
 # Custom defines: CMakeFiles/sylar.dir/sylar/util/util.cc.o_DEFINES = __FILE__="sylar/util/util.cc"
 

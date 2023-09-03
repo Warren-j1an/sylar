@@ -29,7 +29,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 42,
+				"line" : 44,
 				"parent" : 0
 			},
 			{
@@ -83,8 +83,20 @@
 			{
 				"command" : 4,
 				"file" : 0,
-				"line" : 43,
+				"line" : 45,
 				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 19,
+				"parent" : 10
+			},
+			{
+				"command" : 3,
+				"file" : 1,
+				"line" : 19,
+				"parent" : 10
 			},
 			{
 				"command" : 3,
@@ -899,7 +911,7 @@
 			[
 				{
 					"backtrace" : 24,
-					"define" : "__FILE__=\"sylar/thread/mutex.cc\""
+					"define" : "__FILE__=\"sylar/socket/socket.cc\""
 				},
 				{
 					"define" : "sylar_EXPORTS"
@@ -953,7 +965,7 @@
 			[
 				{
 					"backtrace" : 25,
-					"define" : "__FILE__=\"sylar/thread/thread.cc\""
+					"define" : "__FILE__=\"sylar/thread/mutex.cc\""
 				},
 				{
 					"define" : "sylar_EXPORTS"
@@ -1007,7 +1019,7 @@
 			[
 				{
 					"backtrace" : 26,
-					"define" : "__FILE__=\"sylar/util/util.cc\""
+					"define" : "__FILE__=\"sylar/thread/thread.cc\""
 				},
 				{
 					"define" : "sylar_EXPORTS"
@@ -1048,6 +1060,114 @@
 			"sourceIndexes" : 
 			[
 				15
+			]
+		},
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -Wno-deprecated -Wno-unused-function -fPIC  "
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 27,
+					"define" : "__FILE__=\"sylar/util/fsUtil.cc\""
+				},
+				{
+					"define" : "sylar_EXPORTS"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "/mnt/d/dev/sylar/."
+				},
+				{
+					"backtrace" : 4,
+					"path" : "/mnt/d/dev/sylar/sylar/config"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/mnt/d/dev/sylar/sylar/fiber"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/mnt/d/dev/sylar/sylar/log"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/mnt/d/dev/sylar/sylar/socket"
+				},
+				{
+					"backtrace" : 8,
+					"path" : "/mnt/d/dev/sylar/sylar/thread"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/mnt/d/dev/sylar/sylar/util"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				16
+			]
+		},
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -Wno-deprecated -Wno-unused-function -fPIC  "
+				}
+			],
+			"defines" : 
+			[
+				{
+					"backtrace" : 28,
+					"define" : "__FILE__=\"sylar/util/util.cc\""
+				},
+				{
+					"define" : "sylar_EXPORTS"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "/mnt/d/dev/sylar/."
+				},
+				{
+					"backtrace" : 4,
+					"path" : "/mnt/d/dev/sylar/sylar/config"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/mnt/d/dev/sylar/sylar/fiber"
+				},
+				{
+					"backtrace" : 6,
+					"path" : "/mnt/d/dev/sylar/sylar/log"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/mnt/d/dev/sylar/sylar/socket"
+				},
+				{
+					"backtrace" : 8,
+					"path" : "/mnt/d/dev/sylar/sylar/thread"
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/mnt/d/dev/sylar/sylar/util"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				17
 			]
 		}
 	],
@@ -1096,7 +1216,9 @@
 				12,
 				13,
 				14,
-				15
+				15,
+				16,
+				17
 			]
 		}
 	],
@@ -1183,18 +1305,30 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 13,
-			"path" : "sylar/thread/mutex.cc",
+			"path" : "sylar/socket/socket.cc",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 14,
-			"path" : "sylar/thread/thread.cc",
+			"path" : "sylar/thread/mutex.cc",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 15,
+			"path" : "sylar/thread/thread.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 16,
+			"path" : "sylar/util/fsUtil.cc",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 17,
 			"path" : "sylar/util/util.cc",
 			"sourceGroupIndex" : 0
 		}

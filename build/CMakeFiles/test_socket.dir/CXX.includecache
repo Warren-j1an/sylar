@@ -118,6 +118,24 @@ log_event.h
 string
 -
 
+../sylar/socket/address.h
+map
+-
+memory
+-
+string
+-
+netdb.h
+-
+sys/socket.h
+-
+sys/types.h
+-
+sys/un.h
+-
+vector
+-
+
 ../sylar/socket/hook.h
 cstdint
 -
@@ -135,6 +153,26 @@ time.h
 -
 unistd.h
 -
+
+../sylar/socket/socket.h
+cstdint
+-
+iostream
+-
+memory
+-
+string
+-
+sys/socket.h
+-
+sys/types.h
+-
+sys/uio.h
+-
+address.h
+../sylar/socket/address.h
+noncopyable.h
+../sylar/socket/noncopyable.h
 
 ../sylar/thread/mutex.h
 atomic
@@ -176,17 +214,13 @@ vector
 log.h
 ../sylar/util/log.h
 
-/mnt/d/dev/sylar/tests/test_hook.cc
-arpa/inet.h
--
-cstring
--
-netinet/in.h
--
+/mnt/d/dev/sylar/tests/test_socket.cc
 hook.h
 /mnt/d/dev/sylar/tests/hook.h
 iomanager.h
 /mnt/d/dev/sylar/tests/iomanager.h
 log.h
 /mnt/d/dev/sylar/tests/log.h
+socket.h
+/mnt/d/dev/sylar/tests/socket.h
 

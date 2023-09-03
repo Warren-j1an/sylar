@@ -22,7 +22,7 @@ public:
     void setSysNonblock(bool flag) { m_sysNonblock = flag; }
     bool getSysNonblock() { return m_sysNonblock; }
     void setTimeout(int type, uint64_t v);
-    uint64_t getTimeot(int type);
+    uint64_t getTimeout(int type);
 
 private:
     bool init();

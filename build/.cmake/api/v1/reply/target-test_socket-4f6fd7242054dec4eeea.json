@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "/mnt/d/dev/sylar/bin/test_log"
+			"path" : "/mnt/d/dev/sylar/bin/test_socket"
 		}
 	],
 	"backtrace" : 2,
@@ -32,7 +32,7 @@
 			{
 				"command" : 1,
 				"file" : 1,
-				"line" : 58,
+				"line" : 62,
 				"parent" : 0
 			},
 			{
@@ -128,7 +128,7 @@
 			[
 				{
 					"backtrace" : 14,
-					"define" : "__FILE__=\"tests/test_log.cc\""
+					"define" : "__FILE__=\"tests/test_socket.cc\""
 				}
 			],
 			"includes" : 
@@ -176,7 +176,7 @@
 			"id" : "sylar::@6890427a1f51a3e7e1df"
 		}
 	],
-	"id" : "test_log::@6890427a1f51a3e7e1df",
+	"id" : "test_socket::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -218,8 +218,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "test_log",
-	"nameOnDisk" : "test_log",
+	"name" : "test_socket",
+	"nameOnDisk" : "test_socket",
 	"paths" : 
 	{
 		"build" : ".",
@@ -240,7 +240,7 @@
 		{
 			"backtrace" : 2,
 			"compileGroupIndex" : 0,
-			"path" : "tests/test_log.cc",
+			"path" : "tests/test_socket.cc",
 			"sourceGroupIndex" : 0
 		}
 	],

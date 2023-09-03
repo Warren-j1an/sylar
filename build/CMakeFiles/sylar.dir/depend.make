@@ -149,6 +149,27 @@ CMakeFiles/sylar.dir/sylar/socket/hook.cc.o: ../sylar/socket/fd_manager.h
 CMakeFiles/sylar.dir/sylar/socket/hook.cc.o: ../sylar/socket/hook.cc
 CMakeFiles/sylar.dir/sylar/socket/hook.cc.o: ../sylar/socket/hook.h
 
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/fiber/fiber.h
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/fiber/iomanager.h
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/fiber/scheduler.h
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/fiber/timer.h
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/log/log.h
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/log/log_appender.h
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/log/log_event.h
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/log/log_formatter.h
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/log/log_level.h
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/thread/mutex.h
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/thread/thread.h
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/util/fsUtil.h
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/util/noncopyable.h
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/util/singleton.h
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/util/util.h
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/socket/address.h
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/socket/fd_manager.h
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/socket/hook.h
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/socket/socket.cc
+CMakeFiles/sylar.dir/sylar/socket/socket.cc.o: ../sylar/socket/socket.h
+
 CMakeFiles/sylar.dir/sylar/thread/mutex.cc.o: ../sylar/util/noncopyable.h
 CMakeFiles/sylar.dir/sylar/thread/mutex.cc.o: ../sylar/thread/mutex.cc
 CMakeFiles/sylar.dir/sylar/thread/mutex.cc.o: ../sylar/thread/mutex.h
@@ -164,6 +185,9 @@ CMakeFiles/sylar.dir/sylar/thread/thread.cc.o: ../sylar/util/singleton.h
 CMakeFiles/sylar.dir/sylar/thread/thread.cc.o: ../sylar/util/util.h
 CMakeFiles/sylar.dir/sylar/thread/thread.cc.o: ../sylar/thread/thread.cc
 CMakeFiles/sylar.dir/sylar/thread/thread.cc.o: ../sylar/thread/thread.h
+
+CMakeFiles/sylar.dir/sylar/util/fsUtil.cc.o: ../sylar/util/fsUtil.cc
+CMakeFiles/sylar.dir/sylar/util/fsUtil.cc.o: ../sylar/util/fsUtil.h
 
 CMakeFiles/sylar.dir/sylar/util/util.cc.o: ../sylar/fiber/fiber.h
 CMakeFiles/sylar.dir/sylar/util/util.cc.o: ../sylar/log/log.h
