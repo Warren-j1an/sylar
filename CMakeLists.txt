@@ -26,13 +26,13 @@ set(LIB_SRC
     sylar/fiber/iomanager.cc
     sylar/fiber/scheduler.cc
     sylar/fiber/timer.cc
-    sylar/http/bytearray.cc
     sylar/log/log_level.cc
     sylar/log/log_event.cc
     sylar/log/log_formatter.cc
     sylar/log/log_appender.cc
     sylar/log/log.cc
     sylar/socket/address.cc
+    sylar/socket/bytearray.cc
     sylar/socket/fd_manager.cc
     sylar/socket/hook.cc
     sylar/socket/socket.cc
