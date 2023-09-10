@@ -383,7 +383,7 @@ IPAddress::ptr IPv6Address::networkAddress(uint32_t prefix_len) {
     }
     sockaddr_in6 netIP(m_addr);
     netIP.sin6_addr.s6_addr[prefix_len / 8] &= ~CreateMask<uint8_t>(prefix_len & 8);
-    for (int i = prefix_len / 8 + 1; i < 16; ++i) {
+    for (uint32_t i = prefix_len / 8 + 1; i < 16; ++i) {
         netIP.sin6_addr.s6_addr[i] = 0x00;
     }
     return std::make_shared<IPv6Address>(netIP);
@@ -396,7 +396,7 @@ IPAddress::ptr IPv6Address::subnetMask(uint32_t prefix_len) {
     sockaddr_in6 subnet_mask;
     memset(&subnet_mask, 0, sizeof(subnet_mask));
     subnet_mask.sin6_addr.s6_addr[prefix_len / 8] = ~CreateMask<uint8_t>(prefix_len & 8);
-    for (int i = 0; i < prefix_len / 8; ++i) {
+    for (uint32_t i = 0; i < prefix_len / 8; ++i) {
         subnet_mask.sin6_addr.s6_addr[i] = 0xff;
     }
     return std::make_shared<IPv6Address>(subnet_mask);

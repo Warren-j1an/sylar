@@ -1,7 +1,7 @@
 #pragma once
 
 #include <fstream>
-#include <string>
+#include <cstring>
 #include <vector>
 
 namespace sylar {

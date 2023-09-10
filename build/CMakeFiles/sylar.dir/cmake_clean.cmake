@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/sylar.dir/sylar/fiber/iomanager.cc.o"
   "CMakeFiles/sylar.dir/sylar/fiber/scheduler.cc.o"
   "CMakeFiles/sylar.dir/sylar/fiber/timer.cc.o"
+  "CMakeFiles/sylar.dir/sylar/http/bytearray.cc.o"
   "CMakeFiles/sylar.dir/sylar/log/log.cc.o"
   "CMakeFiles/sylar.dir/sylar/log/log_appender.cc.o"
   "CMakeFiles/sylar.dir/sylar/log/log_event.cc.o"

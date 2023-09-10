@@ -2,7 +2,7 @@
 
 #include <cstdint>
 #include <memory>
-#include <string>
+#include <cstring>
 #include <sys/socket.h>
 #include <vector>
 
@@ -64,7 +64,7 @@ public:
     void write(const void* buf, size_t size);
     void read(void* buf, size_t size);
     void read(void* buf, size_t size, size_t position) const;
-    size_t getPostion() const { return m_position; }
+    size_t getPosition() const { return m_position; }
     void setPosition(size_t v);
     bool writeToFile(const std::string& name) const;
     bool readFromFile(const std::string& name);
@@ -82,6 +82,11 @@ public:
 private:
     void addCapacity(size_t size);
     size_t getCapacity() const { return m_capacity - m_position; }
+
+    static uint32_t EncodeZigzag32(const int32_t& v);
+    static uint64_t EncodeZigzag64(const int64_t& v);
+    static int32_t DecodeZigzag32(const uint32_t& v);
+    static int64_t DecodeZigzag64(const uint64_t& v);
 
 private:
     size_t m_baseSize;

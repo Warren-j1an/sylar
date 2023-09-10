@@ -5,9 +5,8 @@ include (cmake/utils.cmake)
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
 
-set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -O0 -ggdb -std=c++14 -Wall -Werror")
-set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -fPIC")
-set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -Wno-deprecated -Wno-unused-function")
+set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O3 -fPIC -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined -Wno-deprecated-declarations")
+set(CMAKE_C_FLAGS "$ENV{CXXFLAGS} -rdynamic -O3 -fPIC -ggdb -std=c11 -Wall -Wno-deprecated -Werror -Wno-unused-function -Wno-builtin-macro-redefined -Wno-deprecated-declarations")
 
 include_directories(.)
 include_directories(${PROJECT_SOURCE_DIR}/sylar/config)
@@ -47,14 +46,15 @@ add_library(sylar SHARED ${LIB_SRC})
 force_redefine_file_macro_for_sources(sylar)
 
 set(LIBS
-        sylar
-        dl
-        pthread
-        yaml-cpp
+    sylar
+    dl
+    pthread
+    yaml-cpp
     )
 
 if(BUILD_TEST)
 sylar_add_executable(test_address "tests/test_address.cc" sylar "${LIBS}")
+sylar_add_executable(test_bytearray "tests/test_bytearray.cc" sylar "${LIBS}")
 sylar_add_executable(test_config "tests/test_config.cc" sylar "${LIBS}")
 sylar_add_executable(test_fiber "tests/test_fiber.cc" sylar "${LIBS}")
 sylar_add_executable(test_hook "tests/test_hook.cc" sylar "${LIBS}")

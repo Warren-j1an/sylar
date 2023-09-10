@@ -21,7 +21,7 @@ void FSUtil::ListAllFile(std::vector<std::string>& files, const std::string& pat
     }
     struct dirent* dp = nullptr;
     while ((dp = readdir(dir)) != nullptr) {
-        if (dp->d_name == "." || dp->d_name == "..") {
+        if (!strcmp(dp->d_name, ".") || !strcmp(dp->d_name, "..")) {
             continue;
         }
         ListAllFile(files, path + "/" + dp->d_name, subfix);
@@ -109,7 +109,7 @@ bool FSUtil::Rm(const std::string& path) {
     bool ret = true;
     struct dirent* dp = nullptr;
     while ((dp = readdir(dir)) != nullptr) {
-        if (dp->d_name == "." || dp->d_name == "..") {
+        if (!strcmp(dp->d_name, ".") || !strcmp(dp->d_name, "..")) {
             continue;
         }
         ret = Rm(path + "/" + dp->d_name);
