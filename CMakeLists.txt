@@ -14,6 +14,7 @@ include_directories(${PROJECT_SOURCE_DIR}/sylar/fiber)
 include_directories(${PROJECT_SOURCE_DIR}/sylar/http)
 include_directories(${PROJECT_SOURCE_DIR}/sylar/log)
 include_directories(${PROJECT_SOURCE_DIR}/sylar/socket)
+include_directories(${PROJECT_SOURCE_DIR}/sylar/transmission)
 include_directories(${PROJECT_SOURCE_DIR}/sylar/thread)
 include_directories(${PROJECT_SOURCE_DIR}/sylar/util)
 link_directories(${PROJECT_SOURCE_DIR}/lib)
@@ -41,6 +42,7 @@ set(LIB_SRC
     sylar/socket/fd_manager.cc
     sylar/socket/hook.cc
     sylar/socket/socket.cc
+    sylar/transmission/tcp_server.cc
     sylar/thread/mutex.cc
     sylar/thread/thread.cc
     sylar/util/fsUtil.cc
@@ -58,16 +60,19 @@ set(LIBS
     )
 
 if(BUILD_TEST)
+sylar_add_executable(echo_server "examples/echo_server.cc" sylar "${LIBS}")
 sylar_add_executable(test_address "tests/test_address.cc" sylar "${LIBS}")
 sylar_add_executable(test_bytearray "tests/test_bytearray.cc" sylar "${LIBS}")
 sylar_add_executable(test_config "tests/test_config.cc" sylar "${LIBS}")
 sylar_add_executable(test_fiber "tests/test_fiber.cc" sylar "${LIBS}")
 sylar_add_executable(test_hook "tests/test_hook.cc" sylar "${LIBS}")
 sylar_add_executable(test_http "tests/test_http.cc" sylar "${LIBS}")
+sylar_add_executable(test_http_parser "tests/test_http_parser.cc" sylar "${LIBS}")
 sylar_add_executable(test_iomanager "tests/test_iomanager.cc" sylar "${LIBS}")
 sylar_add_executable(test_log "tests/test_log.cc" sylar "${LIBS}")
 sylar_add_executable(test_scheduler "tests/test_scheduler.cc" sylar "${LIBS}")
 sylar_add_executable(test_socket "tests/test_socket.cc" sylar "${LIBS}")
+sylar_add_executable(test_tcp_server "tests/test_tcp_server.cc" sylar "${LIBS}")
 sylar_add_executable(test_thread "tests/test_thread.cc" sylar "${LIBS}")
 endif()
 

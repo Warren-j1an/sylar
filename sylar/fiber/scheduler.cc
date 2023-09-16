@@ -1,3 +1,4 @@
+#include "hook.h"
 #include "log.h"
 #include "scheduler.h"
 #include "util.h"
@@ -122,6 +123,7 @@ Fiber* Scheduler::GetMainFiber() {
 
 void Scheduler::run() {
     SYLAR_LOG_INFO(g_logger) << m_name << " run";
+    set_hook_enable(true);
     setThis();
     if (GetThreadID() != m_rootThread) {
         t_fiber = Fiber::GetThis().get();
