@@ -102,7 +102,7 @@ public:
     std::ostream& dump(std::ostream& os) const;
     std::string toString() const;
 
-private:
+public:
     void init();
     void initParam();
     void initQueryParam();
