@@ -18,6 +18,9 @@ include_directories(${PROJECT_SOURCE_DIR}/sylar/stream)
 include_directories(${PROJECT_SOURCE_DIR}/sylar/transmission)
 include_directories(${PROJECT_SOURCE_DIR}/sylar/thread)
 include_directories(${PROJECT_SOURCE_DIR}/sylar/util)
+
+include_directories(${PROJECT_SOURCE_DIR}/third_party)
+
 link_directories(${PROJECT_SOURCE_DIR}/lib)
 
 option(BUILD_TEST "ON for complile test" ON)

@@ -20,22 +20,27 @@ void FSUtil::ListAllFile(std::vector<std::string>& files, const std::string& pat
         return;
     }
     struct dirent* dp = nullptr;
-    while ((dp = readdir(dir)) != nullptr) {
-        if (!strcmp(dp->d_name, ".") || !strcmp(dp->d_name, "..")) {
-            continue;
+    while((dp = readdir(dir)) != nullptr) {
+        if(dp->d_type == DT_DIR) {
+            if(!strcmp(dp->d_name, ".") || !strcmp(dp->d_name, "..")) {
+                continue;
+            }
+            ListAllFile(files, path + "/" + dp->d_name, subfix);
+        } else if(dp->d_type == DT_REG) {
+            std::string filename(dp->d_name);
+            if(subfix.empty()) {
+                files.push_back(path + "/" + filename);
+            } else {
+                if(filename.size() < subfix.size()) {
+                    continue;
+                }
+                if(filename.substr(filename.length() - subfix.size()) == subfix) {
+                    files.push_back(path + "/" + filename);
+                }
+            }
         }
-        ListAllFile(files, path + "/" + dp->d_name, subfix);
     }
     closedir(dir);
-    std::string filename = dp->d_name;
-    if (subfix.empty()) {
-        files.push_back(path + "/" + filename);
-    } else {
-        if ((filename.size() > subfix.size()) &&
-            (filename.substr(filename.size() - subfix.size()) == subfix)) {
-            files.push_back(path + "/" + filename);
-        }
-    }
 }
 
 static int __lstat(const char* file, struct stat* st = nullptr) {
