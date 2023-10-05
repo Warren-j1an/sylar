@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <cstdint>
 #include <string>
 
 #include "http.h"
@@ -35,7 +36,17 @@ struct HttpResult {
 };
 
 class HttpConnection : public SocketStream {
+public:
+    typedef std::shared_ptr<HttpConnection> ptr;
 
+    static HttpResult::ptr DoGet(const std::string& uri, uint64_t timeout_ms,
+        const std::map<std::string, std::string>& headers = {}, const std::string& body = "");
+    // static HttpResult::ptr DoGet(Uri::ptr uri, uint64_t timeout_ms,
+    //     const std::map<std::string, std::string>& headers = {}, const std::string& body = "");
+
+private:
+    uint64_t m_createTime = 0;
+    uint64_t m_request = 0;
 };
 }   // sylar
 }   // http

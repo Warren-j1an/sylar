@@ -40,6 +40,7 @@ set(LIB_SRC
     sylar/http/http_util.cc
     sylar/http/http11_parser.rl.cc
     sylar/http/servlet.cc
+    sylar/http/uri.cc
     sylar/log/log_level.cc
     sylar/log/log_event.cc
     sylar/log/log_formatter.cc
