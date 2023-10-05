@@ -107,19 +107,19 @@ public:
         HttpResponse::ptr response, HttpSession::ptr session) override;
     void addServlet(const std::string& uri, Servlet::ptr slt);
     void addServlet(const std::string& uri, FunctionServlet::callback cb);
-    void addGlobalServlet(const std::string& uri, Servlet::ptr slt);
-    void addGlobalServlet(const std::string& uri, FunctionServlet::callback cb);
+    void addGlobServlet(const std::string& uri, Servlet::ptr slt);
+    void addGlobServlet(const std::string& uri, FunctionServlet::callback cb);
     void addServletCreator(const std::string& uri, IServletCreator::ptr creator);
-    void addGlobalServletCreator(const std::string& uri, IServletCreator::ptr creator);
+    void addGlobServletCreator(const std::string& uri, IServletCreator::ptr creator);
     void delServlet(const std::string& uri);
-    void delGlobalServlet(const std::string& uri);
+    void delGlobServlet(const std::string& uri);
     void setDefault(Servlet::ptr v) { m_default = v;}
     Servlet::ptr getDefault() const { return m_default;}
     Servlet::ptr getServlet(const std::string& uri);
-    Servlet::ptr getGlobalServlet(const std::string& uri);
+    Servlet::ptr getGlobServlet(const std::string& uri);
     Servlet::ptr getMatchedServlet(const std::string& uri);
     void listAllServletCreator(std::map<std::string, IServletCreator::ptr>& infos);
-    void listAllGlobalServletCreator(std::map<std::string, IServletCreator::ptr>& infos);
+    void listAllGlobServletCreator(std::map<std::string, IServletCreator::ptr>& infos);
 
     template<typename T>
     void addServletCreator(const std::string& uri) {
@@ -127,14 +127,14 @@ public:
     }
 
     template<typename T>
-    void addGlobalServletCreator(const std::string& uri) {
-        addGlobalServletCreator(uri, std::make_shared<ServletCreator<T>>());
+    void addGlobServletCreator(const std::string& uri) {
+        addGlobServletCreator(uri, std::make_shared<ServletCreator<T>>());
     }
 
 private:
     RWMutexType m_mutex;
     std::unordered_map<std::string, IServletCreator::ptr> m_datas;
-    std::vector<std::pair<std::string, IServletCreator::ptr>> m_globals;
+    std::vector<std::pair<std::string, IServletCreator::ptr>> m_globs;
     Servlet::ptr m_default;
 };
 }   // http

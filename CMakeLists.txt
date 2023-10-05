@@ -33,6 +33,7 @@ set(LIB_SRC
     sylar/fiber/timer.cc
     sylar/http/http.cc
     sylar/http/httpclient_parser.rl.cc
+    sylar/http/http_connection.cc
     sylar/http/http_parser.cc
     sylar/http/http_server.cc
     sylar/http/http_session.cc
