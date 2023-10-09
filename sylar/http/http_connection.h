@@ -6,6 +6,7 @@
 
 #include "http.h"
 #include "socket_stream.h"
+#include "uri.h"
 
 namespace sylar {
 namespace http {
@@ -41,8 +42,25 @@ public:
 
     static HttpResult::ptr DoGet(const std::string& uri, uint64_t timeout_ms,
         const std::map<std::string, std::string>& headers = {}, const std::string& body = "");
-    // static HttpResult::ptr DoGet(Uri::ptr uri, uint64_t timeout_ms,
-    //     const std::map<std::string, std::string>& headers = {}, const std::string& body = "");
+    static HttpResult::ptr DoGet(Uri::ptr uri, uint64_t timeout_ms,
+        const std::map<std::string, std::string>& headers = {}, const std::string& body = "");
+    static HttpResult::ptr DoPost(const std::string uri, uint64_t timeout_ms,
+        const std::map<std::string, std::string>& headers = {}, const std::string& body = "");
+    static HttpResult::ptr DoPost(Uri::ptr uri, uint64_t timeout_ms,
+        const std::map<std::string, std::string>& headers = {}, const std::string& body = "");
+    static HttpResult::ptr DoRequest(HttpMethod method, const std::string uri, uint64_t timout_ms,
+        const std::map<std::string, std::string>& headers = {}, const std::string& body = "");
+    static HttpResult::ptr DoRequest(HttpMethod method, Uri::ptr uri, uint64_t timout_ms,
+        const std::map<std::string, std::string>& headers = {}, const std::string& body = "");
+    static HttpResult::ptr DoRequest(HttpRequest::ptr req, Uri::ptr uri, uint64_t timeout_ms);
+    static HttpResult::ptr DoRequest(HttpRequest::ptr req, Address::ptr addr, bool is_https,
+        uint64_t timeout_ms);
+    static HttpResult::ptr DoRequest(HttpRequest::ptr req, Socket::ptr sock, uint64_t timeout_ms);
+
+    HttpConnection(Socket::ptr sock, bool owner = true);
+    ~HttpConnection();
+    HttpResponse::ptr recvResponse();
+    int sendRequest(HttpRequest::ptr req);
 
 private:
     uint64_t m_createTime = 0;

@@ -53,6 +53,7 @@ set(LIB_SRC
     sylar/stream/bytearray.cc
     sylar/stream/socket_stream.cc
     sylar/stream/stream.cc
+    sylar/stream/zlib_stream.cc
     sylar/transmission/tcp_server.cc
     sylar/thread/mutex.cc
     sylar/thread/thread.cc
@@ -86,6 +87,7 @@ sylar_add_executable(test_scheduler "tests/test_scheduler.cc" sylar "${LIBS}")
 sylar_add_executable(test_socket "tests/test_socket.cc" sylar "${LIBS}")
 sylar_add_executable(test_tcp_server "tests/test_tcp_server.cc" sylar "${LIBS}")
 sylar_add_executable(test_thread "tests/test_thread.cc" sylar "${LIBS}")
+sylar_add_executable(test_uri "tests/test_uri.cc" sylar "${LIBS}")
 endif()
 
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
