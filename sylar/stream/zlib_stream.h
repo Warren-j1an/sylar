@@ -48,6 +48,7 @@ public:
     virtual int write(ByteArray::ptr ba, size_t length) override;
     virtual void close() override;
 
+    int flush();
     bool isFree() const { return m_free; }
     void setFree(bool v) { m_free = v; }
     bool isEncoder() const { return m_encoder; }
@@ -61,7 +62,6 @@ private:
         int window_bits = 15, int memlevel = 8, Strategy strategy = DEFAULT);
     int encode(const iovec* v, const uint64_t& size, bool finish);
     int decode(const iovec* v, const uint64_t& size, bool finish);
-    int flush();
 
 private:
     z_stream m_zstream;

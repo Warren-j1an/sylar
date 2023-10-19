@@ -6,20 +6,24 @@
 
 namespace sylar {
 ZlibStream::ptr ZlibStream::CreateGzip(bool encoder, uint32_t buffer_size) {
-
+    return Create(encoder, buffer_size, GZIP);
 }
 
 ZlibStream::ptr ZlibStream::CreateZlib(bool encoder, uint32_t buffer_size ) {
-
+    return Create(encoder, buffer_size, ZLIB);
 }
 
 ZlibStream::ptr ZlibStream::CreateDeflate(bool encoder, uint32_t buffer_size) {
-
+    return Create(encoder, buffer_size, DEFLATE);
 }
 
 ZlibStream::ptr ZlibStream::Create(bool encoder, uint32_t buffer_size, Type type,
         CompressionLevel level, int window_bits, int memlevel, Strategy strategy) {
-
+    ZlibStream::ptr rt(new ZlibStream(encoder, buffer_size));
+    if(rt->init(type, level, window_bits, memlevel, strategy) == Z_OK) {
+        return rt;
+    }
+    return nullptr;
 }
 
 ZlibStream::ZlibStream(bool encoder, uint32_t buffer_size)
@@ -136,10 +140,69 @@ int ZlibStream::encode(const iovec* v, const uint64_t& size, bool finish) {
 }
 
 int ZlibStream::decode(const iovec* v, const uint64_t& size, bool finish) {
+    int ret = 0;
+    int flush = 0;
+    for(uint64_t i = 0; i < size; ++i) {
+        m_zstream.avail_in = v[i].iov_len;
+        m_zstream.next_in = (Bytef*)v[i].iov_base;
 
+        flush = finish ? (i == size - 1 ? Z_FINISH : Z_NO_FLUSH) : Z_NO_FLUSH;
+
+        iovec* ivc = nullptr;
+        do {
+            if(!m_buffers.empty() && m_buffers.back().iov_len != m_bufferSize) {
+                ivc = &m_buffers.back();
+            } else {
+                iovec vc;
+                vc.iov_base = malloc(m_bufferSize);
+                vc.iov_len = 0;
+                m_buffers.push_back(vc);
+                ivc = &m_buffers.back();
+            }
+
+            m_zstream.avail_out = m_bufferSize - ivc->iov_len;
+            m_zstream.next_out = (Bytef*)ivc->iov_base + ivc->iov_len;
+
+            ret = inflate(&m_zstream, flush);
+            if(ret == Z_STREAM_ERROR) {
+                return ret;
+            }
+            ivc->iov_len = m_bufferSize - m_zstream.avail_out;
+        } while(m_zstream.avail_out == 0);
+    }
+
+    if(flush == Z_FINISH) {
+        inflateEnd(&m_zstream);
+    }
+    return Z_OK;
 }
 
 int ZlibStream::flush() {
+    iovec ivc;
+    ivc.iov_base = nullptr;
+    ivc.iov_len = 0;
 
+    if(m_encoder) {
+        return encode(&ivc, 1, true);
+    } else {
+        return decode(&ivc, 1, true);
+    }
+}
+
+std::string ZlibStream::getResult() const {
+    std::string rt;
+    for(auto& i : m_buffers) {
+        rt.append((const char*)i.iov_base, i.iov_len);
+    }
+    return rt;
+}
+
+ByteArray::ptr ZlibStream::getByteArray() {
+    ByteArray::ptr ba(new sylar::ByteArray);
+    for(auto& i : m_buffers) {
+        ba->write(i.iov_base, i.iov_len);
+    }
+    ba->setPosition(0);
+    return ba;
 }
 }
